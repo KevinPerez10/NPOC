@@ -37,8 +37,13 @@ function getCurrentDate() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
+    const [visible, setVisible] = useState(false)
     const [isChecked, setIsChecked] = useState(false);
     const [error, setError] = useState("");
+
+    const toggleVisibility = () => {
+        setVisible(!visible)
+    } 
     
     const propsToPass = {
         first: first,
@@ -69,36 +74,33 @@ function getCurrentDate() {
         const td = new Date(getCurrentDate())
         const diffInYears = (td.getTime() - bd.getTime()) / (1000 * 3600 * 24 * 365);
 
-        useEffect(() => {
-            const timeoutId = setTimeout(() => {
-                setError('')
-            }, 5000)
-
-            return () => {
-                clearTimeout(timeoutId)
-            }
-        }, [error])
-
         if (bd >= td) {
             setError("Input a valid birth of date")
+            setTimeout(() => setError(''), 5000)
         }
         else if (diffInYears <= 5) {
-            setError("Patient must be 5 years older")
+            setError("Invalid age")
+            setTimeout(() => setError(''), 5000)
         }
         else if (password!=confirmpassword) {
             setError("Passwords doesn't match")
+            setTimeout(() => setError(''), 5000)
         }
         else if (phone.length < 11) {
-            setError("Contact must be 11 digits")
+            setError("Phone number must be 11 digits")
+            setTimeout(() => setError(''), 5000)
         }
         else if (isChecked == false) {
             setError("Check the terms and agreement!")
+            setTimeout(() => setError(''), 5000)
         }
         else if(!EMAIL_REGEX.test(email)){
             setError("Please input a valid email!")
+            setTimeout(() => setError(''), 5000)
         }
         else if(password.length <= MIN_PASSWORD_LENGTH){
             setError("The password must contain at least 8 characters!")
+            setTimeout(() => setError(''), 5000)
         }
         else if (email.includes('@') && email.includes('.com')) {
         axios.post('https://mysql-npoc.herokuapp.com/checkemail', {
@@ -110,15 +112,18 @@ function getCurrentDate() {
             }
             else{
                 setError("An email is already registered in this account!")
+                setTimeout(() => setError(''), 5000)
             }
         })
         
         //setOpenVerify(true)
       } else {
         setError('Invalid email address!');
+        setTimeout(() => setError(''), 5000)
       }
     } else {
       setError('Please fill all required fields!');
+      setTimeout(() => setError(''), 5000)
     }
     }
     const handleSubmit = () => {
@@ -182,7 +187,13 @@ function getCurrentDate() {
                                         setPhone(event.target.value.replace(/\D/,''))
                                     )}/>
                         </div>
-                        <div className="flex items-center border-b border-gray py-2">
+                        <input
+                            type="text"
+                            disabled
+                            className='appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none'
+                            placeholder='Date of Birth'
+                        />
+                        <div className="flex col-start-2 items-center border-b border-gray py-2 -mt-10">
                             <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                     type="date"
                                     placeholder="Date of Birth"
@@ -217,9 +228,10 @@ function getCurrentDate() {
                         </div>
                         <div className="flex items-center border-b border-gray py-2">
                             <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                    type="password"
+                                    type={visible ? 'text' : 'password'}
                                     placeholder="Password"
                                     aria-label="password"
+                                    value={password}
                                     //for useState
                                     onChange={(event) => (
                                         setPassword(event.target.value)
@@ -228,13 +240,20 @@ function getCurrentDate() {
                         </div>
                         <div className="flex items-center border-b border-gray py-2">
                             <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                    type="password"
+                                    type={visible ? 'text' : 'password'}
                                     placeholder="Confirm Password"
                                     aria-label="confirm password"
                                     onChange={(event) => (
                                         setConfirmPassword(event.target.value)
                                     )}/>
             
+                            <div className='grid place-items-center text-xl cursor-pointer'>
+                                {visible ? (
+                                    <ion-icon onClick={toggleVisibility} name="eye-outline"></ion-icon>
+                                ) : (
+                                    <ion-icon onClick={toggleVisibility} name="eye-off-outline"></ion-icon>
+                                )}
+                            </div>
                         </div>
                         <div>
                             <p></p>

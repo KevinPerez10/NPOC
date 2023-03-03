@@ -6,11 +6,17 @@ import { motion } from 'framer-motion'
 export default function LogIn({Login, error}) {
     const [details, setDetails] = useState({email: "", password: ""})
     const [errors, setErrors] = useState()
+    const [visible, setVisible] = useState(false)
     // const submitHandler = e => {
     //     e.preventDefault()
     
     //     Login(details)
     //   }
+
+    const toggleVisibility = () => {
+        setVisible(!visible)
+    }
+
     useEffect(()=>{
         setErrors(error);
     },[error])
@@ -22,6 +28,7 @@ export default function LogIn({Login, error}) {
             //alert('Log in success!')
         } else {
             setErrors({message: 'Please fill all required fields!'})
+            setTimeout(() => setError(''), 5000)
         }
     } 
 
@@ -48,10 +55,17 @@ export default function LogIn({Login, error}) {
                     </div>
                     <div className="col-span-2 flex items-center border-b border-gray py-2">
                         <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                type="password"
+                                type={visible ? 'text' : 'password'}
                                 placeholder="Password"
                                 aria-label="password"
                                 onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
+                        <div className='grid place-items-center text-xl cursor-pointer'>
+                            {visible ? (
+                                <ion-icon onClick={toggleVisibility} name="eye-outline"></ion-icon>
+                            ) : (
+                                <ion-icon onClick={toggleVisibility} name="eye-off-outline"></ion-icon>
+                            )}
+                        </div>
         
                     </div>
                     <Link to="/forgotpass" className='col-span-2'>
