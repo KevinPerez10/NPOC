@@ -10,7 +10,7 @@ import TermsCondition from './TermsCondition'
 export default function SignUp() {
 const navigate = useNavigate();
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const MIN_PASSWORD_LENGTH = 8;
+const MIN_PASSWORD_LENGTH = 7;
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
     const [openVerify, setOpenVerify] = useState(false)
     const [openTermsConditions, setOpenTermsConditions] = useState(false)
