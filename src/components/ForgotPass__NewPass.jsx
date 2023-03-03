@@ -13,7 +13,7 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
     password: newPassword
   };
   function changePass(){
-    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+    if (newPassword.length <= MIN_PASSWORD_LENGTH) {
       alert("The password must contain at least 8 characters!")
     }
     else{
