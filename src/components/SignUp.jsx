@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Nav from './Nav'
 import axios from 'axios'
 import { motion } from 'framer-motion'
@@ -13,12 +13,30 @@ const navigate = useNavigate();
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const MIN_PASSWORD_LENGTH = 7;
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
 function getCurrentDate() {
     const today = new Date();
-    const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
-    return today.toLocaleDateString('en-US', options);
+    var mon = today.getMonth()+1;
+    if(mon<10){
+        mon = "0"+ mon
+    }
+    var day = today.getDate();
+    if(day<10){
+        day = "0"+ day
+    }
+
+    return( mon+"/"+day+"/"+today.getFullYear());
   }
 
+  useEffect(()=>{
+    const date = getCurrentDate()
+    if(birthday >= date){
+        console(not allowed)
+    }
+    else{
+        allowed
+    }
+  })
     const [openVerify, setOpenVerify] = useState(false)
     const [openTermsConditions, setOpenTermsConditions] = useState(false)
     const [first, setFirst] = useState("");
