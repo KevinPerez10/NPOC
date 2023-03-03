@@ -13,8 +13,11 @@ const navigate = useNavigate();
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const MIN_PASSWORD_LENGTH = 7;
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-const today = new Date().toISOString().substring(0, 10)
-
+function getCurrentDate() {
+    const today = new Date();
+    const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
+    return today.toLocaleDateString('en-US', options);
+  }
 
     const [openVerify, setOpenVerify] = useState(false)
     const [openTermsConditions, setOpenTermsConditions] = useState(false)
@@ -54,7 +57,7 @@ const today = new Date().toISOString().substring(0, 10)
       email !== '' &&
       password !== ''
     ) {
-        if (birthday >= today) {
+        if (birthday >= getCurrentDate) {
             setError("Input a valid birth of date")
         }
         else if (password!=confirmpassword) {
