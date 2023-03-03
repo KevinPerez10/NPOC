@@ -56,6 +56,9 @@ const today = new Date().toISOString().substring(0, 10)
         if (birthday <= today) {
             setError("Input a valid birth of date")
         }
+        if (phone <= 9) {
+            setError("Contact must be 11 digits")
+        }
         else if (isChecked == false) {
             setError("Check the terms and agreement!")
         }
