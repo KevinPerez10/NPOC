@@ -15,7 +15,7 @@ export default function Sched() {
     const [openSlots, setOpenSlots] = useState(false)
     const [isEmpty, setIsEmpty] = useState(0)
     const [selectedID, setSelectedId] = useState()
-    const [loginStatus, setLoginStatus] = useState("");
+    //const [loginStatus, setLoginStatus] = useState("");
     const [error, setError] = useState([]);
     const [appointment, setAppointment] = useState([])
     const [flag, setFlag] = useState(0)
@@ -30,8 +30,8 @@ export default function Sched() {
             } else {
                 const userData = response.data[0].firstName + " " + response.data[0].lastName;
                 setSelectedId(response.data[0].userID);
-                localStorage.setItem('userData', userData);
-                setLoginStatus(userData);
+                //localStorage.setItem('userData', userData);
+                //setLoginStatus(userData);
                 console.log(selectedID);
              
             }	
@@ -45,10 +45,6 @@ export default function Sched() {
         return singaporeTime;
     }
     useEffect(() => {
-        const storedData = localStorage.getItem('userData');
-        if(storedData) {
-           //setLoginStatus(storedData);
-        }
         if(selectedID) { // Add this condition to check if selectedID is defined
             Axios.post('https://mysql-npoc.herokuapp.com/appointment', {
               s: selectedID
@@ -70,8 +66,8 @@ export default function Sched() {
             } else {
                 const userData = response.data[0].firstName + " " + response.data[0].lastName;
                 setSelectedId(response.data[0].userID);
-                localStorage.setItem('userData', userData);
-                setLoginStatus(userData + " " + selectedID);
+                //localStorage.setItem('userData', userData);
+                //setLoginStatus(userData + " " + selectedID);
                 setError("")
             }	
         });
