@@ -5,7 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 export default function ForgotPass__NewPass({open, onClose,props}) {
 
   const navigate = useNavigate();
-
+  const MIN_PASSWORD_LENGTH = 7;
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const prop = {
@@ -13,12 +13,17 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
     password: newPassword
   };
   function changePass(){
+    if (password.length < MIN_PASSWORD_LENGTH) {
+      setError("The password must contain at least 8 characters!")
+    }
+    else{
     axios.post('https://mysql-npoc.herokuapp.com/changepassword', {
         id: props.id,
         ps:newPassword
         })
     alert("Password has been changed!")
     navigate('/Sched', { state: { prop } })
+      }
   }
 
     if (!open) return null
