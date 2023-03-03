@@ -25,6 +25,7 @@ const today = new Date().toISOString().substring(0, 10)
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmpassword, setConfirmPassword] = useState("");
     const [isChecked, setIsChecked] = useState(false);
     const [error, setError] = useState("");
     
@@ -56,7 +57,10 @@ const today = new Date().toISOString().substring(0, 10)
         if (birthday >= today) {
             setError("Input a valid birth of date")
         }
-        else if (phone.length > 11) {
+        else if (password!=confirmpassword) {
+            setError("Passwords doesn't match")
+        }
+        else if (phone.length < 11) {
             setError("Contact must be 11 digits")
         }
         else if (isChecked == false) {
@@ -198,7 +202,10 @@ const today = new Date().toISOString().substring(0, 10)
                             <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                     type="password"
                                     placeholder="Confirm Password"
-                                    aria-label="confirm password"/>
+                                    aria-label="confirm password"
+                                    onChange={(event) => (
+                                        setConfirmPassword(event.target.value)
+                                    )}/>
             
                         </div>
                         <div>
