@@ -8,31 +8,31 @@ export default function Dashboard() {
     const adminUser = [
     {
         name: "Admin2",
-        email: "1",
-        password: "1",
+        email: "admin_2@npoc.com",
+        password: "blueberry2023",
         role: "staff"
     },
     {
         name: "Dr. Celna N. Perez",
-        email: "doctor@admin.com",
-        password: "blueberry2023",
+        email: "doctor@npoc.com",
+        password: "perez2023",
         role: "doctor"
     },
     {
         name: "Admin3",
-        email: "admin_3@admin.com",
+        email: "admin_3@npoc.com",
         password: "strawberry2023",
         role: "staff"
     },
     {
         name: "Admin4",
-        email: "admin_4@admin.com",
+        email: "admin_4@npoc.com",
         password: "blackberry2023",
         role: "staff"
     },
     {
         name: "Admin5",
-        email: "admin_5@admin.com",
+        email: "admin_5@npoc.com",
         password: "raspberry2023",
         role: "staff"
     }
