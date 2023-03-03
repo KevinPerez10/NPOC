@@ -31,7 +31,7 @@ function getCurrentDate() {
     const [openTermsConditions, setOpenTermsConditions] = useState(false)
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
-    const [birthday, setBirthday] = useState(0);
+    const [birthday, setBirthday] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
@@ -65,7 +65,7 @@ function getCurrentDate() {
       email !== '' &&
       password !== ''
     ) {
-        if (birthday == 0 && birthday >= getCurrentDate()) {
+        if (birthday == "" && birthday >= getCurrentDate()) {
             setError("Input a valid birth of date")
         }
         else if (password!=confirmpassword) {
