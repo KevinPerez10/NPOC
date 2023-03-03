@@ -31,10 +31,10 @@ function getCurrentDate() {
   useEffect(()=>{
     const date = getCurrentDate()
     if(birthday >= date){
-        console("not allowed")
+        console.log("not allowed")
     }
     else{
-        console("allowed")
+        console.log("allowed")
     }
   })
     const [openVerify, setOpenVerify] = useState(false)
