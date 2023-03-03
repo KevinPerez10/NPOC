@@ -52,11 +52,11 @@ const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
         if (isChecked == false) {
             setError("Check the terms and agreement!")
         }
-        else if(password.length <= MIN_PASSWORD_LENGTH){
-            setError("The password must contain at least 8 characters!")
-        }
         else if(!EMAIL_REGEX.test(email)){
             setError("Please input a valid email!")
+        }
+        else if(password.length < MIN_PASSWORD_LENGTH){
+            setError("The password must contain at least 8 characters!")
         }
         else if (email.includes('@') && email.includes('.com')) {
         axios.post('https://mysql-npoc.herokuapp.com/checkemail', {
