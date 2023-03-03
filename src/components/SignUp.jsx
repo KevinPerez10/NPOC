@@ -27,16 +27,6 @@ function getCurrentDate() {
 
     return( mon+"/"+day+"/"+today.getFullYear());
   }
-
-  useEffect(()=>{
-    const date = getCurrentDate()
-    if(birthday >= date){
-        console.log("not allowed")
-    }
-    else{
-        console.log(birthday+" "+ date)
-    }
-  })
     const [openVerify, setOpenVerify] = useState(false)
     const [openTermsConditions, setOpenTermsConditions] = useState(false)
     const [first, setFirst] = useState("");
@@ -75,7 +65,7 @@ function getCurrentDate() {
       email !== '' &&
       password !== ''
     ) {
-        if (birthday >= getCurrentDate) {
+        if (birthday == 0 && birthday >= getCurrentDate()) {
             setError("Input a valid birth of date")
         }
         else if (password!=confirmpassword) {
