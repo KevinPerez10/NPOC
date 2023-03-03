@@ -550,12 +550,12 @@ export default function RxData({open, onClose, props}) {
                     >
                     Add
                 </div>
-                <div
+                {/*<div
                     className={`w-10 grid place-items-center bg-button-dblue text-white rounded-full cursor-pointer hover:bg-gray-700 hover:border-gray-700 text-3xl ${openEdit ? 'hidden' : ''}`}
                     
                     >
                     <ion-icon name="print-outline"></ion-icon>
-                </div>
+                </div>*/}
             </div>
         </div>
     </div>
