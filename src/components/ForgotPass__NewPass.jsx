@@ -14,7 +14,7 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
   };
   function changePass(){
     if (newPassword.length < MIN_PASSWORD_LENGTH) {
-      setError("The password must contain at least 8 characters!")
+      alert("The password must contain at least 8 characters!")
     }
     else{
     axios.post('https://mysql-npoc.herokuapp.com/changepassword', {
