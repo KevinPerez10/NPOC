@@ -34,7 +34,7 @@ function getCurrentDate() {
         console.log("not allowed")
     }
     else{
-        console.log("allowed")
+        console.log(birthday+" "+ date)
     }
   })
     const [openVerify, setOpenVerify] = useState(false)
