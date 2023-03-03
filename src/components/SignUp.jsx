@@ -68,6 +68,17 @@ function getCurrentDate() {
         const bd = new Date(birthday)
         const td = new Date(getCurrentDate())
         const diffInYears = (td.getTime() - bd.getTime()) / (1000 * 3600 * 24 * 365);
+
+        useEffect(() => {
+            const timeoutId = setTimeout(() => {
+                setError('')
+            }, 5000)
+
+            return () => {
+                clearTimeout(timeoutId)
+            }
+        }, [error])
+
         if (bd >= td) {
             setError("Input a valid birth of date")
         }
