@@ -66,7 +66,8 @@ function getCurrentDate() {
       password !== ''
     ) {
         const bd = new Date(birthday)
-        if (bd >= getCurrentDate()) {
+        const td = new Date(getCurrentDate())
+        if (bd >= td) {
             setError("Input a valid birth of date")
         }
         else if (password!=confirmpassword) {
