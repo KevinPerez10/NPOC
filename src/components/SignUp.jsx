@@ -65,7 +65,8 @@ function getCurrentDate() {
       email !== '' &&
       password !== ''
     ) {
-        if (birthday == "" && birthday >= getCurrentDate()) {
+        const bd = new Date(birthday)
+        if (bd >= getCurrentDate()) {
             setError("Input a valid birth of date")
         }
         else if (password!=confirmpassword) {
