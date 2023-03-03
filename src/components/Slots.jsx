@@ -194,43 +194,43 @@ function recordAppointment(){
                             {val.period === 'open' && (
                             <>
                             <button id={formatDate(val.date) + ' 10:00:00'} onClick={()=>handleTime("10:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>10AM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>10AM</button>
                             <button id={formatDate(val.date) + ' 11:00:00'} onClick={()=>handleTime("11:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>11AM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>11AM</button>
                             <button id={formatDate(val.date) + ' 12:00:00'} onClick={()=>handleTime("12:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>12PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>12PM</button>
                             <button id={formatDate(val.date) + ' 13:00:00'} onClick={()=>handleTime("13:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>1PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>1PM</button>
                             <button id={formatDate(val.date) + ' 14:00:00'} onClick={()=>handleTime("14:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>2PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>2PM</button>
                             <button id={formatDate(val.date) + ' 15:00:00'} onClick={()=>handleTime("15:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>3PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>3PM</button>
                             <button id={formatDate(val.date) + ' 16:00:00'} onClick={()=>handleTime("16:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>4PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>4PM</button>
                             </>
                             )}
                             {/*closed @ afternoon*/}
                             {val.period === 'afternoon' && (
                             <>
                             <button id={formatDate(val.date) + ' 10:00:00'} onClick={()=>handleTime("10:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>10AM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>10AM</button>
                             <button id={formatDate(val.date) + ' 11:00:00'} onClick={()=>handleTime("11:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>11AM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>11AM</button>
                             </>
                             )}
                             {/*closed @ morning*/}
                             {val.period === 'morning' && (
                             <>
                             <button id={formatDate(val.date) + ' 12:00:00'} onClick={()=>handleTime("12:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>12PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>12PM</button>
                             <button id={formatDate(val.date) + ' 13:00:00'} onClick={()=>handleTime("13:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>1PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>1PM</button>
                             <button id={formatDate(val.date) + ' 14:00:00'} onClick={()=>handleTime("14:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>2PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>2PM</button>
                             <button id={formatDate(val.date) + ' 15:00:00'} onClick={()=>handleTime("15:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>3PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>3PM</button>
                             <button id={formatDate(val.date) + ' 16:00:00'} onClick={()=>handleTime("16:00:00")}
-                            className='focus:bg-gray-700 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-700/75 rounded-xl h-10 w-full py-5 px-5'>4PM</button>
+                            className='focus:bg-gray-500 flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-500/75 rounded-xl h-10 w-full py-5 px-5'>4PM</button>
                             </>
                             )}
                             {/*closed all day*/}
