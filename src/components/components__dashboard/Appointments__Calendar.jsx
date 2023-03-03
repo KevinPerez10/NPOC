@@ -63,8 +63,6 @@ export default function Appointments__Calendar(props) {
       console.error(error);
       setErrorMessage('There was an error loading the calendar events.');
     });
-
-    console.log("+3 queries")
 };
 
 useEffect(()=>{
