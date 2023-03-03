@@ -7,11 +7,15 @@ import { motion } from 'framer-motion'
 import EmailVerification from './EmailVerification'
 import TermsCondition from './TermsCondition'
 
+
 export default function SignUp() {
 const navigate = useNavigate();
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const MIN_PASSWORD_LENGTH = 7;
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+const today = new Date().toISOString().substring(0, 10)
+
+
     const [openVerify, setOpenVerify] = useState(false)
     const [openTermsConditions, setOpenTermsConditions] = useState(false)
     const [first, setFirst] = useState("");
@@ -49,7 +53,10 @@ const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
       email !== '' &&
       password !== ''
     ) {
-        if (isChecked == false) {
+        if (birthday <= today) {
+            setError("Input a valid birth of date")
+        }
+        else if (isChecked == false) {
             setError("Check the terms and agreement!")
         }
         else if(!EMAIL_REGEX.test(email)){
