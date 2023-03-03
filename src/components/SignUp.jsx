@@ -53,7 +53,7 @@ const today = new Date().toISOString().substring(0, 10)
       email !== '' &&
       password !== ''
     ) {
-        if (birthday <= today) {
+        if (birthday >= today) {
             setError("Input a valid birth of date")
         }
         if (phone <= 10) {
