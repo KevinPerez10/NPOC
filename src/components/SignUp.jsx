@@ -148,7 +148,7 @@ function getCurrentDate() {
             <div className='h-full overflow-hidden grid place-items-center font-poppins bg-signup--image bg-cover bg-no-repeat lg:bg-none lg:flex'>
                 <div className='lg:w-1/2 lg:m-0 lg:p-0 lg:shadow-none flex flex-col justify-center items-center shadow-lg rounded-3xl bg-white mx-5 px-10 py-5'>
                     <div
-                        className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute lg:right-3 top-3 transition-all ${error=='' ? 'hidden' : ''}`}
+                        className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${error=='' ? 'hidden' : ''}`}
                     >
                             {error}
                     </div>
