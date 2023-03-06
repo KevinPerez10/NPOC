@@ -67,12 +67,12 @@ export default function Sched() {
         }).then((response) => {
             if(response.data===false){
                 setError("Wrong email or password")
+                setTimeout(() => setError(''), 5000)
             } else {
                 const userData = response.data[0].firstName + " " + response.data[0].lastName;
                 setSelectedId(response.data[0].userID);
                 //localStorage.setItem('userData', userData);
                 setLoginStatus(userData + " " + selectedID);
-                setError("")
             }	
         });
     }
@@ -141,7 +141,7 @@ export default function Sched() {
         exit={{opacity: 0}}
         className='w-full h-full xxs:bg-center bg-npoc--appointment__page bg-cover bg-no-repeat'>
             {(loginStatus != "") ? (
-                <div className='flex flex-col h-full'>
+                <div className='flex flex-col h-full md:backdrop-blur-none backdrop-blur-lg'>
                     <Nav className='self-center lg:self-start text-white fixed' text='hidden text-black lg:flex' logo='hidden lg:flex'/>
                     <div className="text-white text-center font-poppins flex flex-col items-center justify-center h-full">
                         <div className='pb-5 w-full h-full font-gilmer text-xl flex flex-col items-center pt-3 bg-gray-900/75 md:rounded-2xl md:w-5/6 md:h-5/6'>

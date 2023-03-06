@@ -3,6 +3,7 @@ import Appointments__RxData from './Appointments__RxData'
 import Appointments__Calendar from './Appointments__Calendar'
 import Appointments__Calendar__Edit from './Appointments__Calendar__Edit'
 import PatientHistory from '../components__records/PatientHistory'
+import Confirmation from '../Confirmation'
 import Axios from 'axios'
 
 export default function ComponentsAppointments() {
@@ -13,6 +14,8 @@ export default function ComponentsAppointments() {
     const singaporeTime = dt.toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
     return singaporeTime;
 }
+
+  const [confirm, setConfirm] = useState(false)
   
   const [selectedId, setSelectedId] = useState(null)
   const [openPatientHistory, setOpenPatientHistory] = useState(false)
@@ -140,7 +143,6 @@ const propsToPass2 = {
   address: a
 };
 
-
   return (
     <div className='bg-white font-poppins flex flex-col gap-10 justify-between items-center px-5 md:mx-10 md:rounded-xl md:shadow-md h-fit'>
       <div className='flex flex-col md:flex-row justify-around gap-5 w-full mt-10'>
@@ -185,6 +187,16 @@ const propsToPass2 = {
           </p>
           <div
             onClick={()=> {
+              const confirmed = window.confirm("Are you sure you want to cancel this patient's appointment?")
+              confirmed ? deleteRow(val.userID) : null
+              // setConfirm(true)
+            }}
+            className='bg-gray-500 hover:bg-gray-700 w-full text-center text-white px-3 py-1 rounded-full hover:cursor-pointer'
+          >
+            Cancel
+          </div>
+          <div
+            onClick={()=> {
               checkStatus(getNameById(val.userID),val.userID)
               setN(getNameById(val.userID))
               setP(getContactById(val.userID))
@@ -195,18 +207,10 @@ const propsToPass2 = {
           >
             Confirm
           </div>
-          <div
-            onClick={()=> {
-              const confirmed = window.confirm("Are you sure you want to cancel this patient's appointment?")
-              confirmed ? deleteRow(val.userID) : null
-            }}
-            className='bg-gray-500 hover:bg-gray-700 w-full text-center text-white px-3 py-1 rounded-full hover:cursor-pointer'
-          >
-            Cancel
-          </div>
         </div>
           )
         })}
+        <Confirmation open={confirm} onClose={() => setConfirm(false)} onConfirm={() => deleteRow(val.userID)} message={`Are you sure you want to cancel this patient's appointment?`}/>
         {/*up to here */}
 
       <Appointments__RxData props={propsToPass2} open={openAddRxData} onClose={() => setOpenAddRxData(false)}/>

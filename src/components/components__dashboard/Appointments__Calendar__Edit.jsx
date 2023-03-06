@@ -96,7 +96,7 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     var tod = new Date();
     
     if (tod.getTime() >= myDate1.getTime()) {
-      alert("The cannot access past date.")
+      alert("Cannot access past date.")
     }
     else if(myDate1.getTime() > myDate2.getTime()){
       alert("The start date must come first before end date.")

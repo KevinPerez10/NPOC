@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import { useEffect } from 'react';
+import Confirmation from '../Confirmation';
 
 const AddRxData = ({open, onClose}) => { 
   //patient info
@@ -122,19 +123,32 @@ const recordInfo = () =>(
 
     function isEmpty(){
       if ((amount>2147483647)||(payment>2147483647)||(balance>2147483647)) {
-        alert("Amount of transaction must not exceed to 2,147,483,647");
+        setFlag(false)
+        setPopup('Amount of transaction must not exceed to 2,147,483,647')
+        setTimeout(() => setPopup(''), 5000)
       }
       else if ((!Number.isInteger(Number(amount)))||(!Number.isInteger(Number(payment)))||(!Number.isInteger(Number(balance)))) {
-        alert("Amount must be an integer");
+        setFlag(false)
+        setPopup('Amount must be an integer')
+        setTimeout(() => setPopup(''), 5000)
       }
       else if (payment>amount) {
-        alert("payment must be lower or exact to the price");
+        setFlag(false)
+        setPopup('Payment must be lower or exact to the pricer')
+        setTimeout(() => setPopup(''), 5000)
       }
       else if((name!="") && (address!="") && (birthday!="") && (phone!="")){
         recordSubmit();
+        setFlag(true)
+        setPopup('Inputs Recorded!')
+        setTimeout(() => {
+          setPopup('')
+        }, 5000)
       }
       else {
-        alert('Fill all required fields!')
+        setFlag(false)
+        setPopup('Fill all required fields!')
+        setTimeout(() => setPopup(''), 5000)
       }
     }
 
@@ -142,10 +156,26 @@ const recordInfo = () =>(
     useEffect(()=>{
       setBalance(amount-payment)
     },[amount, payment])
-    
+
+    const [popup, setPopup] = useState('')
+    const [flag, setFlag] = useState()
+  
   if(!open) return null
   return (
     <div className='overlay bg-black/70 fixed w-full h-full z-10 top-0 left-0'>
+      {flag ? (
+        <div
+          className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+          {popup}
+        </div>
+      ) : (
+        <div
+          className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+          {popup}
+        </div>
+      )}
       <div className='grid place-items-center h-full'>
         <div className='text-xs h-fit w-5/6 flex flex-col justify-center items-center rounded-lg shadow-lg px-10 py-5 bg-white'>
           <h2 className="text-lg text-center mb-4 self-start"> New Patient </h2>
@@ -371,10 +401,11 @@ const recordInfo = () =>(
                 Cancel
             </button>
             <button className="border-none bg-button-dblue hover:bg-gray-700 text-sm border-4 text-white py-2 px-10 rounded-full shadow-lg"
-                    type="submit" onClick={isEmpty}>
+                type="submit" onClick={isEmpty}>
                 Add
             </button>
           </div>
+          <Confirmation/>
         </div>
       </div>
     </div>
