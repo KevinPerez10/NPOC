@@ -16,7 +16,7 @@ export default function Sched() {
     const [isEmpty, setIsEmpty] = useState(0)
     const [selectedID, setSelectedId] = useState()
     const [loginStatus, setLoginStatus] = useState("");
-    const [error, setError] = useState([]);
+    const [error, setError] = useState();
     const [appointment, setAppointment] = useState([])
     const [flag, setFlag] = useState(0)
 
@@ -62,7 +62,7 @@ export default function Sched() {
             password: details.password
         }).then((response) => {
             if(response.data===false){
-                setError({message: "Wrong email or password"})
+                setError("Wrong email or password")
             } else {
                 const userData = response.data[0].firstName + " " + response.data[0].lastName;
                 setSelectedId(response.data[0].userID);

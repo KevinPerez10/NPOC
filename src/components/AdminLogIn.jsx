@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Nav from './Nav';
@@ -6,10 +6,20 @@ import Nav from './Nav';
 export default function AdminLogIn({Login, error}) {
   const [details, setDetails] = useState({email: "", password: ""});
 
+  const [errors, setErrors] = useState()
+
+  useEffect(()=>{
+    setErrors(error);
+},[error])
+
   const submitHandler = e => {
     e.preventDefault();
-
-    Login(details);
+    if(details.email === "" || details.password === ""){
+        setErrors("Please fill all required! fields");
+        setTimeout(() => setErrors(''), 5000)
+      } else {
+        Login(details);
+      }
   }
 
     return (
@@ -26,7 +36,7 @@ export default function AdminLogIn({Login, error}) {
             <div className='min-h-fit w-full lg:w-2/5 flex flex-col justify-center items-center font-poppins p-20'>
                 <h2 className='font-gilmer text-3xl self-start'> Welcome! </h2>
                 <h3 className='font-poppins self-start mb-5'> Please login to your account </h3>
-                {(error != "") ? (<div className="error">{error}</div>) : ""}
+                {(errors != "") ? (<div className="error">{errors}</div>) : ""}
                 <form className='w-full grid grid-cols-2 gap-4' onSubmit={submitHandler}>
                     <div className="col-span-2 flex items-center border-b border-gray py-2">
                         <input className="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none"
