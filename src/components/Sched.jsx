@@ -3,6 +3,7 @@ import Nav from './Nav'
 import {Link, useLocation} from 'react-router-dom'
 import LogIn from './LogIn'
 import Slots from './Slots'
+import Confirmation from './Confirmation'
 import Axios from 'axios'
 import { motion } from 'framer-motion'
 import moment from 'moment';
@@ -11,6 +12,9 @@ export default function Sched() {
 
     const location = useLocation();
     const props = location.state.prop;
+
+    const [confirm, setConfirm] = useState(false)
+    const [messageQuery, setMessageQuery] = useState('')
 
     const [openSlots, setOpenSlots] = useState(false)
     const [isEmpty, setIsEmpty] = useState(0)
@@ -63,6 +67,7 @@ export default function Sched() {
         }).then((response) => {
             if(response.data===false){
                 setError({message: "Wrong email or password"})
+                setTimeout(() => setError(''), 1000)
             } else {
                 const userData = response.data[0].firstName + " " + response.data[0].lastName;
                 setSelectedId(response.data[0].userID);
@@ -140,16 +145,16 @@ export default function Sched() {
                 <div className='flex flex-col h-full'>
                     <Nav className='self-center lg:self-start text-white fixed' text='hidden text-black lg:flex' logo='hidden lg:flex'/>
                     <div className="text-white text-center font-poppins flex flex-col items-center justify-center h-full">
-                        <div className='pb-5 font-gilmer text-xl flex flex-col items-center w-5/6 pt-3 bg-gray-900/75 rounded-2xl h-5/6'>
+                        <div className='pb-5 w-full h-full font-gilmer text-xl flex flex-col items-center pt-3 bg-gray-900/75 md:rounded-2xl md:w-5/6 md:h-5/6'>
                             My Appointment
                             {appointment.map((val,key) => {
                             return (
-                            <div className="cards my-auto grid place-items-center w-full">
-                                <div className="relative m-5 p-6 h-fit gap-3 flex flex-col text-left text-white rounded-sm border-none shadow-md bg-gradient-to-b from-button-lblue to-button-dblue hover:rounded-br-3xl hover:rounded-tl-3xl hover:scale-105 transition-all">
+                            <div className="cards my-auto grid place-items-center w-full overflow-x-auto overflow-y-auto md:text-lg text-xs">
+                                <div className="relative m-5 p-6 h-fit xs:w-fit w-full gap-3 flex flex-col text-left text-white rounded-sm border-none shadow-md bg-gradient-to-b from-button-lblue to-button-dblue hover:rounded-br-3xl hover:rounded-tl-3xl hover:scale-105 transition-all">
                                         <div
                                             onClick={() => {
-                                                const confirmed = window.confirm("Are you sure you want to cancel your appointment?")
-                                                confirmed ? deleteRow(selectedID) : null
+                                                setMessageQuery('Are you sure you want to cancel this appointment?')
+                                                setConfirm(true)
                                             }}
                                             className='absolute flex self-end text-3xl cursor-pointer text-white hover:text-black hover:scale-105 transition-all'
                                         >
@@ -201,7 +206,7 @@ export default function Sched() {
                             </div>
                             )})}
                             <div className='flex flex-col lg:flex-row-reverse gap-2 mt-auto justify-center w-1/2'>
-                               {isEmpty != 1?(
+                            {isEmpty != 1?(
                                 <div
                                     onClick={() => setOpenSlots(true)}
                                     className="min-w-lg mt-auto rounded-full flex items-center justify-center bg-button-dblue px-10 py-3 hover:bg-button-lblue transition-all"
@@ -216,9 +221,9 @@ export default function Sched() {
                                 :(console.log())
                                 }
 
-                                <div className='min-w-lg mt-auto rounded-full flex items-center justify-center bg-button-dblue px-10 py-3 hover:bg-button-lblue transition-all'
-                                 onClick={()=>setLoginStatus("")}
-                                 >
+                                <div className='cursor-pointer mt-auto rounded-full flex items-center justify-center bg-button-dblue px-10 py-3 hover:bg-button-lblue transition-all'
+                                    onClick={()=>setLoginStatus("")}
+                                >
                                     <div className="cursor-pointer" >
                                         <ion-icon name="log-out-outline"></ion-icon>
                                     </div>
@@ -226,6 +231,7 @@ export default function Sched() {
                             </div>
                         </div>
                     </div>
+                    <Confirmation open={confirm} onClose={() => setConfirm(false)} onConfirm={() => deleteRow(selectedID)} message={messageQuery}/>
                     <Slots props={selectedID} open={openSlots} onClose={() => setOpenSlots(false)}/>
                 </div>
             ): (
