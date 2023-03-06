@@ -25,11 +25,11 @@ export default function ForgotPass() {
     const prop = {
         email: "null",
         password: "null"
-      };
+    };
     useEffect(()=>{
         setPropsToPass({email: email,id: userID });
     },[email,userID])
-      
+
     function isEmpty(){
         if(email!=""){
             if (email.includes('@')&& email.includes('.com')) {
@@ -37,7 +37,10 @@ export default function ForgotPass() {
                 e:email
                 }).then((response)=>{
                     if(response.data==false){
-                        alert("The email you provided is not registered to the system!")
+                        // alert("The email you provided is not registered to the system!")
+                        setFlag(false)
+                        setPopup('The email you provided is not registered to the system!')
+                        setTimeout(() => setPopup(''), 5000)
                     }
                     else{
                         setUserId(response.data[0].userID)
@@ -49,11 +52,17 @@ export default function ForgotPass() {
                 })
                 
               } else {
-                alert('Invalid email address!');
+                // alert('Invalid email address!');
+                setFlag(false)
+                setPopup('Invalid email address!')
+                setTimeout(() => setPopup(''), 5000)
               }
         }
         else{
-            alert('Please fill all required fields!');
+            // alert('Please fill all required fields!');
+            setFlag(false)
+            setPopup('Please fill all required fields!')
+            setTimeout(() => setPopup(''), 5000)
         }
     }
 
@@ -74,13 +83,16 @@ export default function ForgotPass() {
             c:code,
             e:email
            }).then((response)=>{
-               if(response.data == true){
+            if(response.data == true){
                 setOpenNewPass(true)
-               }
-               else{
-                 alert("Incorrect code! Please input the right code.")
-               }
-           })
+            }
+            else{
+                // alert("Incorrect code! Please input the right code.")
+                setFlag(false)
+                setPopup('Incorrect code! Please input the right code.')
+                setTimeout(() => setPopup(''), 5000)
+            }
+            })
       }
 
       const handleClick = () => {
@@ -119,16 +131,19 @@ export default function ForgotPass() {
           });
       };
 
-      useEffect(() => {
+    useEffect(() => {
         if (isDisabled && counter > 0) {
-          setTimeout(() => setCounter(counter - 1), 1000);
+            setTimeout(() => setCounter(counter - 1), 1000);
         } else if (counter === 0) {
-          setIsDisabled(false);
+            setIsDisabled(false);
           setCountdownFinished(true); // update countdownFinished state variable
         }
         
         return () => clearInterval(intervalId);
-      }, [isDisabled, counter, intervalId]);
+    }, [isDisabled, counter, intervalId]);
+
+    const [popup, setPopup] = useState('')
+    const [flag, setFlag] = useState()
 
 return (
     <motion.div
@@ -137,6 +152,19 @@ return (
         exit={{opacity: 0}}
         className= 'h-full w-full flex flex-col'
     >
+        {flag ? (
+                <div
+                    className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+                >
+                    {popup}
+                </div>
+            ) : (
+                <div
+                    className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+                >
+                    {popup}
+                </div>
+            )}
         <Nav className='self-center fixed lg:self-start' text='hidden text-black lg:flex'/>
         <div className='h-screen grid place-items-center font-poppins bg-forgot--password bg-cover bg-no-repeat lg:bg-none lg:flex'>
             <div className='lg:w-1/2 lg:m-0 lg:p-0 lg:shadow-none flex flex-col justify-center items-center bg-white w-4/5 h-3/4 p-10 shadow-lg rounded-3xl'>

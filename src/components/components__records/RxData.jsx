@@ -2,11 +2,6 @@ import React, {useState, useEffect} from 'react'
 import Axios from 'axios'
 
 export default function RxData({open, onClose, props}) {
-    //Alert
-    const handleAlert = () => {
-        alert('Success! Changes have been saved.')
-    }
-
     //Open Edit
     if(!open) return null
     const [openEdit, setOpenEdit] = useState(false)
@@ -154,31 +149,63 @@ export default function RxData({open, onClose, props}) {
 
     const isEmpty = () => {
         if ((amount>2147483647)||(payment>2147483647)||(balance>2147483647)) {
-            alert("Amount of transaction must not exceed to 2,147,483,647");
+            // alert("Amount of transaction must not exceed to 2,147,483,647");
+            setFlag(false)
+            setPopup('Amount of transaction must not exceed to 2,147,483,64')
+            setTimeout(() => setPopup(''), 5000)
         }
         else if ((!Number.isInteger(Number(amount)))||(!Number.isInteger(Number(payment)))||(!Number.isInteger(Number(balance)))) {
-          alert("Amount must be an integer");
+            alert("Amount must be an integer");
         }
         else if (payment>amount) {
-            alert("payment must be lower or exact to the price");
-          }
+            // alert("Payment must be lower or exact to the price");
+            setFlag(false)
+            setPopup('Payment must be lower or exact to the price')
+            setTimeout(() => setPopup(''), 5000)
+        }
         else {
             recordRx(pid)
             recordTransaction(pid)
             updatePatient(pid)
-            onClose()
-            handleAlert()
+            // handleAlert()
+            setFlag(true)
+            setPopup('Success! Changes have been saved.')
+            setTimeout(() => {
+                setPopup('')
+                onClose()
+            }, 5000)
             checkDelete()
         }
-        
     }
 
-        //Function of amount, deposit, balance, and total
-        useEffect(()=>{
-            setBalance(amount-payment)
-          },[amount, payment])
-  return (
+    //Alert
+    const handleAlert = () => {
+        alert('Success! Changes have been saved.')
+    }
+
+    //Function of amount, deposit, balance, and total
+    useEffect(()=>{
+        setBalance(amount-payment)
+    },[amount, payment])
+
+    const [popup, setPopup] = useState('')
+    const [flag, setFlag] = useState()
+    
+return (
     <div className='fixed grid place-items-center w-full h-full z-20 top-0 left-0'>
+        {flag ? (
+        <div
+            className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+            {popup}
+        </div>
+        ) : (
+        <div
+            className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+            {popup}
+        </div>
+        )}
         <div className='w-5/6 h-4/5 flex flex-col gap-3 rounded-lg border-2 text-button-dblue shadow-lg px-10 py-5 bg-white'>
             
             {/* Form Group */}
@@ -539,7 +566,7 @@ export default function RxData({open, onClose, props}) {
                         ${openEdit && dirtyForm ? '' : 'hidden'}
                     `}
                     onClick={() => {
-                       isEmpty()
+                        isEmpty()
                     }}
                 >
                     Save

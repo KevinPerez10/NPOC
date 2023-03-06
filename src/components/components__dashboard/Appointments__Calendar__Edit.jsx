@@ -19,16 +19,27 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     var tod = new Date();
     
     if (tod.getTime() >= myDate1.getTime()) {
-      alert("Cannot access past date.")
+      // alert("Cannot access past date.")
+      setPopupStatus(false)
+      setPopup('Cannot access past date.')
+      setTimeout(() => setPopup(''), 5000)
     }
     else if(myDate1.getTime() > myDate2.getTime()){
-      alert("The start date must come first before end date.")
+      // alert("The start date must come first before end date.")
+      setPopupStatus(false)
+      setPopup('The start date must come first before end date.')
+      setTimeout(() => setPopup(''), 5000)
     }
     else{
       const datesArr = getDatesInRange(myDate1, myDate2).map(date => date.toLocaleDateString());
       for (const date of datesArr) {
       checkStatus(date)
       }
+      setPopupStatus(true)
+      setPopup('Changes has been saved!')
+      setTimeout(() => {
+        setPopup('')
+      }, 5000)
     }
   };
   //function to set an array with dates
@@ -96,16 +107,28 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     var tod = new Date();
     
     if (tod.getTime() >= myDate1.getTime()) {
-      alert("Cannot access past date.")
+      // alert("Cannot access past date.")
+      setPopupStatus(false)
+      setPopup('Cannot access past date.')
+      setTimeout(() => setPopup(''), 5000)
+      
     }
     else if(myDate1.getTime() > myDate2.getTime()){
-      alert("The start date must come first before end date.")
+      // alert("The start date must come first before end date.")
+      setPopupStatus(false)
+      setPopup('The start date must come first before end date.')
+      setTimeout(() => setPopup(''), 5000)
     }
     else{
       const datesArr = getDatesInRange(myDate1, myDate2).map(date => date.toLocaleDateString());
       for (const date of datesArr) {
       checkOpenStatus(date)
       }
+      setPopupStatus(true)
+      setPopup('Changes has been saved!')
+      setTimeout(() => {
+        setPopup('')
+      }, 5000)
     }
   };
   const checkOpenStatus = (d) => {
@@ -142,9 +165,26 @@ const UpdateOpen = (id,p) => {
             setFlag(flag + 1)
           })
   }
+
+  const [popup, setPopup] = useState('')
+  const [popupStatus, setPopupStatus] = useState()
+
   return (
 
     <div className='bg-black/70 fixed grid place-items-center w-full h-full z-20 top-0 left-0'>
+      {popupStatus ? (
+        <div
+          className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+          {popup}
+        </div>
+          ) : (
+        <div
+          className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+          {popup}
+        </div>
+        )}
         <div className='flex flex-col justify-center items-center gap-5 w-5/6 h-fit rounded-lg shadow-lg px-10 py-5 bg-white'>
             <div className='text-3xl'>Edit Calendar</div>
             <div className='flex w-full justify-between'>

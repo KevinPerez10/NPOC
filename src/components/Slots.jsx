@@ -166,7 +166,6 @@ function recordAppointment(){
         setPopup('')
         onClose()
       }, 5000)
-      // onClose()
     })
   }
   else{
@@ -185,23 +184,23 @@ function recordAppointment(){
         animate={{opacity: 1}}
         exit={{opacity: 0}}
         className='fixed h-screen w-full flex flex-col font-poppins text-xl text-white bg-white'>
+          {flag ? (
+            <div
+              className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+            >
+              {popup}
+            </div>
+          ) : (
+            <div
+              className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+            >
+              {popup}
+            </div>
+          )}
             <Nav className='self-center lg:self-start fixed' text='hidden lg:text-black lg:flex' logo='hidden lg:flex'/>
             <div className='h-full w-full grid lg:grid-cols-2 overflow-hidden'>
                 <div className='min-h-screen w-full flex flex-col items-center justify-between bg-available--slots bg-cover bg-no-repeat lg:bg-none lg:flex'>
                     <div className='h-full w-full flex flex-col gap-5 lg:pt-20 pt-10 items-center justify-between lg:bg-none lg:flex lg:backdrop-blur-none backdrop-blur-lg'>
-                      {flag ? (
-                        <div
-                            className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
-                        >
-                            {popup}
-                        </div>
-                      ) : (
-                        <div
-                            className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
-                        >
-                            {popup}
-                        </div>
-                      )}
                       <div className='text-2xl text-black self-start ml-5'>
                           <h1 className="text-3xl"> Book Appointment: </h1>
                       </div>

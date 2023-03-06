@@ -141,30 +141,57 @@ export default function Appointments__RxData({open, onClose, props}) {
             alert("Amount of transaction must not exceed to 2,147,483,647");
         }
         else if ((!Number.isInteger(Number(amount)))||(!Number.isInteger(Number(payment)))||(!Number.isInteger(Number(balance)))) {
-          alert("Amount must be an integer");
+            // alert("Amount must be an integer");
+            setFlag(false)
+            setPopup('Amount must be an integer')
+            setTimeout(() => setPopup(''), 5000)
         }
         else if (payment>amount) {
-            alert("payment must be lower or exact to the price");
-          }
-        else {
-            recordSubmit();
+            // alert("payment must be lower or exact to the price");
+            setFlag(false)
+            setPopup('Payment must be lower or exact to the price')
+            setTimeout(() => setPopup(''), 5000)
         }
-      }
+        else {
+            setFlag(true)
+            setPopup('Inputs recorded!')
+            setTimeout(() => {
+                setPopup('')
+                recordSubmit();
+            }, 1000)
+        }
+    }
 
 const getFormat = (date) => {
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-      var myDate = new Date(date)
-      return monthNames[myDate.getMonth()] + " " + myDate.getDate() + ", " + myDate.getFullYear();
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        var myDate = new Date(date)
+        return monthNames[myDate.getMonth()] + " " + myDate.getDate() + ", " + myDate.getFullYear();
     }
 
     useEffect(()=>{
         setBalance(amount-payment)
-      },[amount, payment])
+    },[amount, payment])
+
+    const [popup, setPopup] = useState('')
+    const [flag, setFlag] = useState()
 
     if(!open) return null
-  return (
+return (
     <div>
+        {flag ? (
+        <div
+            className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+            {popup}
+        </div>
+        ) : (
+        <div
+            className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+            {popup}
+        </div>
+        )}
         <div className='overlay bg-black/70 fixed w-full h-full z-10 top-0 left-0'>
         <div className='grid place-items-center h-full'>
             <div className='text-xs h-fit w-5/6 flex flex-col justify-center items-center rounded-lg shadow-lg px-10 py-5 bg-white'>

@@ -20,11 +20,19 @@ const navigate = useNavigate()
      e:props.email
     }).then((response)=>{
         if(response.data == true){
-          alert("You have successfully signed in!")
-          signupInfo()
+          // alert("You have successfully signed in!")
+          setFlag(true)
+          setPopup('You have successfully signed in!')
+          setTimeout(() => {
+            setPopup('')
+            signupInfo()
+          }, 5000)
         }
         else{
-          alert("Incorrect code! Please input the right code.")
+          // alert("Incorrect code! Please input the right code.")
+          setFlag(false)
+          setPopup('Incorrect code! Please input the right code.')
+          setTimeout(() => setPopup(''), 5000)
         }
     })
   }
@@ -85,6 +93,9 @@ const navigate = useNavigate()
       return () => clearInterval(intervalId);
     }, [isDisabled, counter, intervalId]);
 
+    const [popup, setPopup] = useState('')
+    const [flag, setFlag] = useState()
+
   if (!open) return null
   return (
     <motion.div
@@ -93,6 +104,19 @@ const navigate = useNavigate()
         exit={{opacity: 0}}
         className='fixed text-white font-poppins bg-emailverification bg-cover bg-center flex flex-col items-center w-full h-screen'
     >
+      {flag ? (
+        <div
+          className={`z-20 bg-green-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+          {popup}
+        </div>
+      ) : (
+        <div
+          className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${popup=='' ? 'hidden' : ''}`}
+        >
+          {popup}
+        </div>
+      )}
             <Nav className='text-white self-center fixed lg:self-start' text='hidden lg:flex'/>
             <div className='flex flex-col text-center justify-center items-center bg-gray-900/40 w-full h-full'>
                 <div className='text-button-dblue bg-white lg:w-1/2 lg:shadow-none flex flex-col gap-3 justify-center items-center shadow-lg rounded-3xl mx-5 px-10 py-5'>
@@ -102,11 +126,12 @@ const navigate = useNavigate()
                   <div>
                     <input
                       className='border-2 rounded-lg px-3 py-2 text-center'
-                      type="text"
+                      type="tel"
                       placeholder='Enter a 6-digit code'
                       maxLength='6'
+                      value={code}
                       onChange={(event) => (
-                        setCode(event.target.value)
+                        setCode(event.target.value.replace(/\D/,''))
                       )}
                     />
                   </div>
