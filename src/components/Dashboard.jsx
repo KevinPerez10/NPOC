@@ -12,16 +12,10 @@ export default function Dashboard() {
         password: "blueberry2023",
         role: "staff"
     },
-    // {
-    //     name: "Dr. Celna N. Perez",
-    //     email: "doctor@npoc.com",
-    //     password: "perez2023",
-    //     role: "doctor"
-    // },
     {
         name: "Dr. Celna N. Perez",
-        email: "1",
-        password: "1",
+        email: "doctor@npoc.com",
+        password: "perez2023",
         role: "doctor"
     },
     {
