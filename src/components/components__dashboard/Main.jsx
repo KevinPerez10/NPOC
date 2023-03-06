@@ -35,7 +35,7 @@ export default function ComponentsDashboard() {
         setVisits(response.data);
         });
       },[]);
-      useEffect(() => {
+      /*useEffect(() => {
 
         //sales table
         Axios.post('https://mysql-npoc.herokuapp.com/allrecords', {
@@ -55,15 +55,15 @@ export default function ComponentsDashboard() {
         }).then((response) => {
         setAmount(response.data[0]);
         });
-    },[one,two])
-
-    useEffect(() => {
+    },[one,two])*/
+    
+    /*useEffect(() => {
         Axios.post('https://mysql-npoc.herokuapp.com/withbalance',{
             s:search
         }).then((response) => {
         setWithBalance(response.data);
         });
-      }, [withBalance]);
+      }, [withBalance]);*/
 
       useEffect(() => {
         Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
@@ -71,7 +71,7 @@ export default function ComponentsDashboard() {
         });
       },[]);
       //this month sales
-      useEffect(()=>{
+      /*useEffect(()=>{
         Axios.post('https://mysql-npoc.herokuapp.com/monthsales', {
             f: "MONTH(createdAt) = MONTH(CURRENT_DATE - INTERVAL 0 MONTH) AND ",
             s: "0 MONTH"
@@ -103,7 +103,7 @@ export default function ComponentsDashboard() {
         }).then((response) => {
             setSalesLastYear(response.data[0]);
         });
-      },[])
+      },[])*/
        //record count
        useEffect(()=>{
         Axios.post('https://mysql-npoc.herokuapp.com/recordcount', {
@@ -127,6 +127,7 @@ export default function ComponentsDashboard() {
             setNewRecord(response.data);
         });
       },[])
+
       function thisMonth(deduction){
         const monthNames = [
             'January',
@@ -223,11 +224,10 @@ export default function ComponentsDashboard() {
                 </div>
                 <br></br>
                 {/* Pending Transactions Table */}
-                <div className='col-span-2 flex flex-col items-center rounded shadow-md bg-white'>
+                {/*<div className='col-span-2 flex flex-col items-center rounded shadow-md bg-white'>
                     <div className='font-gilmer text-button-lblue pt-10'>
                         Pending Transactions
                     </div>
-                    {/* Search Bar */}
                     <div className='flex gap-2 items-center'>
                         <input
                         className='flex justify-between text-gray-400 p-3 w-fit rounded-full shadow-lg px-5 py-2 my-3'
@@ -238,7 +238,7 @@ export default function ComponentsDashboard() {
                         <ion-icon name="search-outline"></ion-icon>
                         </div>
                     </div>
-                    {/* Table */}
+
                     <div className='lg:col-span-2 h-80 overflow-auto w-full shadow-md md:self-center'>
                         <table className='table-auto w-full'>
                             <thead className='w-full bg-gray-100 shadow-lg top-0 sticky'>
@@ -278,8 +278,9 @@ export default function ComponentsDashboard() {
                         </table>
                     </div>
                 </div>
-                <br></br>
+                <br></br>*/}
                 {/* Sales Report */}
+                {/*
                 <div className='col-span-2 flex flex-col items-center rounded shadow-md bg-white'>
                     <div className='font-gilmer text-button-lblue py-10 flex flex-col gap-3 items-center justify-center w-full px-3'>
                         Sales Report
@@ -356,7 +357,7 @@ export default function ComponentsDashboard() {
                             </div>
                         </div>
                     </div>
-                    {/* Table */}
+                    
                     <div className='lg:col-span-2 h-80 overflow-auto w-full shadow-md md:self-center'>
                         <table className='table-auto w-full'>
                             <thead className='w-full bg-gray-100 shadow-lg top-0 sticky'>
@@ -417,8 +418,9 @@ export default function ComponentsDashboard() {
                         </table>
                     </div>
                 </div>
+*/}
                 
-                <Main__Reports props={prop} open={openReport} onClose={() => setOpenReport(false)}/>
+                {/*<Main__Reports props={prop} open={openReport} onClose={() => setOpenReport(false)}/>*/}
                 
                 {/* Recent Visits */}
                 <br></br>
