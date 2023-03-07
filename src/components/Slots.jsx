@@ -184,7 +184,8 @@ function recordAppointment(){
     f: user.firstName,
     l: user.lastName,
     d: getDate2(selectedDate),
-    t: selectedTime2
+    t: selectedTime2,
+    email: user.email
     })
   }
   else{
