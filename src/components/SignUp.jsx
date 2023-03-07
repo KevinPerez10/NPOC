@@ -6,6 +6,8 @@ import axios from 'axios'
 import { motion } from 'framer-motion'
 import EmailVerification from './EmailVerification'
 import TermsCondition from './TermsCondition'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 export default function SignUp() {
@@ -32,7 +34,6 @@ function getCurrentDate() {
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
     const [birthday, setBirthday] = useState("");
-    const [dateInput, setDateInput] = useState(false)
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
@@ -44,10 +45,6 @@ function getCurrentDate() {
 
     const toggleVisibility = () => {
         setVisible(!visible)
-    }
-
-    const toggleDateInput = () => {
-        setDateInput(!dateInput)
     }
     
     const propsToPass = {
@@ -203,17 +200,23 @@ function getCurrentDate() {
                                 placeholder='Date of Birth'
                             /> */}
                             <div className="flex flex-col items-center border-b border-gray py-2">
-                                <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                        type={dateInput ? "date" : "text"}
+                                {/* <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                                        type="date"
                                         placeholder="Date of Birth"
                                         aria-label="date of birth"
-                                        // value={birthday}
                                         //for useState
-                                        onFocus={toggleDateInput}
-                                        onBlur={toggleDateInput}
                                         onChange={(event) => (
                                             setBirthday(event.target.value)
                                         )}
+                                /> */}
+                                <DatePicker
+                                    className='w-full'
+                                    selected={birthday}
+                                    placeholderText='Date of Birth'
+                                    dateFormat='MM/dd/yyyy'
+                                    showYearDropdown
+                                    scrollableYearDropdown
+                                    onChange={date => setBirthday(date)}
                                 />
                             </div>
                             {/* Address */}
