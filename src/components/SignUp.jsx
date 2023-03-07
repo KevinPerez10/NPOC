@@ -214,8 +214,10 @@ function getCurrentDate() {
                                     selected={birthday}
                                     placeholderText='Date of Birth'
                                     dateFormat='MM/dd/yyyy'
+                                    maxDate={new Date()}
                                     showYearDropdown
-                                    scrollableYearDropdown
+                                    showMonthDropdown
+                                    dropdownMode='select'
                                     onChange={date => setBirthday(date)}
                                 />
                             </div>
