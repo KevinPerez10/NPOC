@@ -6,6 +6,7 @@ import Axios from 'axios'
 
 export default function Slots({open, onClose, props}) {
     if (!open) return null
+    const [load, setLoad] = useState(false);
 
     function timeZone(date){
       const dt = new Date(date);
@@ -24,7 +25,7 @@ export default function Slots({open, onClose, props}) {
           hideButton(buttonId);
         });
       });
-    },[]);
+    },[load]);
     
     function getCurrentDateTime(dt) {
       if (!dt) {
@@ -87,6 +88,7 @@ useEffect(() => {
       return newObject;
     });
     setDates(newDate);
+    setLoad(true);
   }
   
 
@@ -165,7 +167,7 @@ function recordAppointment(){
       setTimeout(() => {
         setPopup('')
         onClose()
-      }, 5000)
+      }, 2000)
     })
   }
   else{
@@ -269,13 +271,13 @@ function recordAppointment(){
                               }}
                               className='xs:col-start-2 w-full border-none bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 border-4 text-white py-2 px-5 rounded-xl'
                           >
-                              Next
+                              Save
                           </button>
                           <div
                               onClick={onClose}
                               className='xs:row-start-1 w-full border-none bg-gray-500 text-white hover:text-red-500 py-2 px-5 rounded-xl'
                           >
-                              Previous
+                              Cancel
                           </div>
                       </div>
                     </div>

@@ -219,7 +219,7 @@ export default function Sched() {
                                 </div>)
                                 :(console.log())
                                 }
-
+                                
                                 <div className='cursor-pointer mt-auto rounded-full flex items-center justify-center bg-button-dblue px-10 py-3 hover:bg-button-lblue transition-all'
                                     onClick={()=>setLoginStatus("")}
                                 >

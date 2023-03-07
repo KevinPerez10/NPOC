@@ -26,7 +26,7 @@ const navigate = useNavigate()
           setTimeout(() => {
             setPopup('')
             signupInfo()
-          }, 5000)
+          }, 2000)
         }
         else{
           // alert("Incorrect code! Please input the right code.")

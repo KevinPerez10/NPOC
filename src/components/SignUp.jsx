@@ -75,7 +75,7 @@ function getCurrentDate() {
         const diffInYears = (td.getTime() - bd.getTime()) / (1000 * 3600 * 24 * 365);
 
         if (bd >= td) {
-            setError("Input a valid birth of date")
+            setError("Input a valid date of birth")
             setTimeout(() => setError(''), 5000)
         }
         else if (diffInYears <= 5) {
@@ -91,11 +91,11 @@ function getCurrentDate() {
             setTimeout(() => setError(''), 5000)
         }
         else if (!phone.includes('09')){
-            setError("Input a valid phone number")
+            setError("Please input a valid phone number")
             setTimeout(() => setError(''), 5000)
         }
         else if (isChecked == false) {
-            setError("Check the terms and agreement!")
+            setError("Check the terms and conditions!")
             setTimeout(() => setError(''), 5000)
         }
         else if(!EMAIL_REGEX.test(email)){
