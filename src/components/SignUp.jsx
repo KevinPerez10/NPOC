@@ -191,13 +191,13 @@ function getCurrentDate() {
                                             setPhone(event.target.value.replace(/\D/,''))
                                         )}/>
                             </div>
-                            <input
+                            {/* <input
                                 type="text"
                                 disabled
                                 className='appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none'
                                 placeholder='Date of Birth'
-                            />
-                            <div className="flex col-start-2 items-center border-b border-gray py-2 -mt-10">
+                            /> */}
+                            <div className="flex flex-col items-center border-b border-gray py-2">
                                 <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                         type="date"
                                         placeholder="Date of Birth"

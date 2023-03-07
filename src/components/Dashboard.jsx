@@ -3,6 +3,7 @@ import {Link, NavLink, Outlet} from 'react-router-dom'
 import { motion } from 'framer-motion'
 import AdminLogIn from './AdminLogIn';
 import axios from 'axios'
+import Confirmation from './Confirmation';
 
 export default function Dashboard() {
     const adminUser = [
@@ -74,6 +75,9 @@ export default function Dashboard() {
     //handle hamburger
     const [open, setOpen] = useState(false)
 
+    //handle logout
+    const [confirm, setConfirm] = useState(false)
+
 
     return (
         <motion.div
@@ -144,7 +148,7 @@ export default function Dashboard() {
                             <div className='grid place-items-center text-3xl w-full mx-3 hover:cursor-pointer' src="./svg/bell-svgrepo-com.svg" alt="">
                                 <ion-icon name="notifications-outline"></ion-icon>
                             </div>
-                            <div className='grid place-items-center text-3xl w-full mx-3 hover:cursor-pointer' alt="" onClick={Logout}>
+                            <div className='grid place-items-center text-3xl w-full mx-3 hover:cursor-pointer' alt="" onClick={() => setConfirm(true)}>
                                 <ion-icon name="log-out-outline"></ion-icon>
                             </div>
                             
@@ -167,6 +171,7 @@ export default function Dashboard() {
                                 onClick={() => {
                                     const confirmed = window.confirm("Are you sure you want to log out?")
                                     confirmed ? Logout() : null
+                                    // setConfirm(true)
                                 }}
                             >
                                 <ion-icon name="log-out-outline"></ion-icon>
@@ -188,6 +193,7 @@ export default function Dashboard() {
                     </div>
                     
                 </div>
+                <Confirmation open={confirm} onClose={() => setConfirm(false)} message={'Are you sure you want to logout?'}/>
             </div>
             ) : (
                 <AdminLogIn Login={Login} error={error}/>

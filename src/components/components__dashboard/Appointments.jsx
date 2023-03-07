@@ -4,6 +4,7 @@ import Appointments__Calendar from './Appointments__Calendar'
 import Appointments__Calendar__Edit from './Appointments__Calendar__Edit'
 import PatientHistory from '../components__records/PatientHistory'
 import Confirmation from '../Confirmation'
+import Confirmation__Comment from '../Confirmation__Comment'
 import Axios from 'axios'
 
 export default function ComponentsAppointments() {
@@ -16,7 +17,7 @@ export default function ComponentsAppointments() {
 }
 
   const [confirm, setConfirm] = useState(false)
-  
+  const [confirmComment, setConfirmComment] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
   const [openPatientHistory, setOpenPatientHistory] = useState(false)
   const [openAddRxData, setOpenAddRxData] = useState(false)
@@ -210,7 +211,8 @@ const propsToPass2 = {
         </div>
           )
         })}
-        <Confirmation open={confirm} onClose={() => setConfirm(false)} onConfirm={() => deleteRow(val.userID)} message={`Are you sure you want to cancel this patient's appointment?`}/>
+        <Confirmation open={confirm} onClose={() => setConfirm(false)} onConfirm={() => setConfirmComment(true)} message={`Are you sure you want to cancel this patient's appointment?`}/>
+        <Confirmation__Comment open={confirmComment} onClose={() => setConfirmComment(false)}/>
         {/*up to here */}
 
       <Appointments__RxData props={propsToPass2} open={openAddRxData} onClose={() => setOpenAddRxData(false)}/>

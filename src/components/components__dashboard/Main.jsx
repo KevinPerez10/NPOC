@@ -221,7 +221,7 @@ export default function ComponentsDashboard() {
                     <div>Pending Appointments</div>
                     <div>{displayLength(appointmentList)}</div>
                 </div>
-                <br></br>
+                {/* <br></br> */}
                 {/* Pending Transactions Table */}
                 {/*
                 <div className='col-span-2 flex flex-col items-center rounded shadow-md bg-white'>
@@ -239,7 +239,7 @@ export default function ComponentsDashboard() {
                         <ion-icon name="search-outline"></ion-icon>
                         </div>
                     </div>
-                   
+
                     <div className='lg:col-span-2 h-80 overflow-auto w-full shadow-md md:self-center'>
                         <table className='table-auto w-full'>
                             <thead className='w-full bg-gray-100 shadow-lg top-0 sticky'>
@@ -425,7 +425,7 @@ export default function ComponentsDashboard() {
                 <br></br>
                                 */}
                 {/* Recent Visits */}
-                 <div className='bg-white flex flex-col justify-center items-center py-20 rounded shadow-md col-span-2'>
+                <div className='bg-white flex flex-col justify-center items-center py-10 rounded shadow-md col-span-2'>
                     <div className='font-gilmer text-button-lblue mb-3'>Recent Visits</div>
                     <div className='text-sm lg:text-xl flex flex-col text-white w-5/6 h-60 overflow-auto'>
                     {visits.map((val,key) => {

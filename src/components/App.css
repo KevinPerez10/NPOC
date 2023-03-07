@@ -37,3 +37,11 @@ input::-webkit-inner-spin-button {
 ::-webkit-scrollbar-thumb {
   background: #888;
 }
+
+input[type="date"]
+{
+  display: block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
+}
