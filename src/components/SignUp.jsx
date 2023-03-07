@@ -32,6 +32,7 @@ function getCurrentDate() {
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
     const [birthday, setBirthday] = useState("");
+    const [dateInput, setDateInput] = useState(false)
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
@@ -43,7 +44,11 @@ function getCurrentDate() {
 
     const toggleVisibility = () => {
         setVisible(!visible)
-    } 
+    }
+
+    const toggleDateInput = () => {
+        setDateInput(!dateInput)
+    }
     
     const propsToPass = {
         first: first,
@@ -199,18 +204,17 @@ function getCurrentDate() {
                             /> */}
                             <div className="flex flex-col items-center border-b border-gray py-2">
                                 <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                        type="date"
+                                        type={dateInput ? "date" : "text"}
                                         placeholder="Date of Birth"
                                         aria-label="date of birth"
-                                        value={setBirthday === '' ? (
-                                            'Date of Birth'
-                                        ) : (
-                                            birthday
-                                        )}
+                                        // value={birthday}
                                         //for useState
+                                        onFocus={toggleDateInput}
+                                        onBlur={toggleDateInput}
                                         onChange={(event) => (
                                             setBirthday(event.target.value)
-                                        )}/>
+                                        )}
+                                />
                             </div>
                             {/* Address */}
                             <div className="col-span-2 flex items-center border-b border-gray py-2">
@@ -265,7 +269,7 @@ function getCurrentDate() {
                                 <p></p>
                             </div>
                             <div className="col-span-2 mt-5 flex justify-center gap-2">
-                                <input className='lg:w-5 w-7 cursor-pointer' type="checkbox"checked={isChecked}
+                                <input className='sm:w-5 w-10 cursor-pointer' type="checkbox"checked={isChecked}
                                 onChange={(event) => setIsChecked(event.target.checked)}/>
                                 <div className='flex md:flex-row flex-col gap-1'>
                                     By clicking this checkbox, you agree to our <div onClick={() => { setOpenTermsConditions(true)}} className='text-link cursor-pointer'>Terms and Conditions</div>
