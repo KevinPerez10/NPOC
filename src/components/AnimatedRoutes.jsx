@@ -12,7 +12,7 @@ import Main from './components__dashboard/Main'
 import Records from './components__dashboard/Records'
 import RxData from './components__records/AddRxData'
 import Appointments from './components__dashboard/Appointments'
-import Reports from './components__dashboard/Reports'
+import Calendar from './components__dashboard/Calendar'
 import EmailVerification from './EmailVerification'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
@@ -36,7 +36,7 @@ export default function AnimatedRoutes() {
             <Route path='records' element={<Records/>}/>
             <Route path='rxdata' element={<RxData/>}/>
             <Route path='appointments' element={<Appointments/>}/>
-            <Route path='reports' element={<Reports/>}/>
+            <Route path='calendar' element={<Calendar/>}/>
         </Route>
         </Routes>
     </AnimatePresence>

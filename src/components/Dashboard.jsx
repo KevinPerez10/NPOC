@@ -136,14 +136,14 @@ export default function Dashboard() {
                             Appointments
                         </NavLink>
                         
-                        {/* <NavLink
-                            to="/dashboard/reports"
+                        <NavLink
+                            to="/dashboard/calendar"
                             replace
-                            isActive={(location) => location.pathname === '/dashboard/reports'}
-                            className={`hover:bg-gray-700 px-5 py-2 mx-3 rounded-full transition-all ${location.pathname === '/dashboard/reports' ? 'bg-button-lblue' : ''}`}
+                            isActive={(location) => location.pathname === '/dashboard/calendar'}
+                            className={`hover:bg-gray-700 px-5 py-2 mx-3 rounded-full transition-all ${location.pathname === '/dashboard/calendar' ? 'bg-button-lblue' : ''}`}
                         >
-                            Reports
-                        </NavLink> */}
+                            Calendar
+                        </NavLink>
                         <div className='lg:hidden flex self-center gap-2'>
                             <div className='grid place-items-center text-3xl w-full mx-3 hover:cursor-pointer' src="./svg/bell-svgrepo-com.svg" alt="">
                                 <ion-icon name="notifications-outline"></ion-icon>
