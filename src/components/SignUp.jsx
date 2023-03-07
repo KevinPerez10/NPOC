@@ -90,6 +90,10 @@ function getCurrentDate() {
             setError("Phone number must be 11 digits")
             setTimeout(() => setError(''), 5000)
         }
+        else if (!phone.includes('09')){
+            setError("Input a valid phone number")
+            setTimeout(() => setError(''), 5000)
+        }
         else if (isChecked == false) {
             setError("Check the terms and agreement!")
             setTimeout(() => setError(''), 5000)
@@ -259,7 +263,7 @@ function getCurrentDate() {
                                 <input className='lg:w-5 w-7 cursor-pointer' type="checkbox"checked={isChecked}
                                 onChange={(event) => setIsChecked(event.target.checked)}/>
                                 <div className='flex md:flex-row flex-col gap-1'>
-                                    By clicking this checkbox, you agree to our <div onClick={() => setOpenTermsConditions(true)} className='text-link cursor-pointer'>Terms and Conditions</div>
+                                    By clicking this checkbox, you agree to our <div onClick={() => { setOpenTermsConditions(true)}} className='text-link cursor-pointer'>Terms and Conditions</div>
                                 </div>
                             </div>
                             <div className='w-full flex justify-center items-center lg:flex-row flex-col gap-3 col-span-2'>
@@ -289,7 +293,7 @@ function getCurrentDate() {
                         />
                     </div>
                     <EmailVerification props={propsToPass}open={openVerify} onClose={() => setOpenVerify(false)}/>
-                    <TermsCondition openTerms={openTermsConditions} onCloseTerms={() => setOpenTermsConditions(false)}/>
+                    <TermsCondition openTerms={openTermsConditions} onCloseTerms={() => {setIsChecked(true); setOpenTermsConditions(false)}}/>
                 </div>
             </div>
     </motion.div>
