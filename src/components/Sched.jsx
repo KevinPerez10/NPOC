@@ -36,7 +36,6 @@ export default function Sched() {
                 setSelectedId(response.data[0].userID);
                 //localStorage.setItem('userData', userData);
                 setLoginStatus(userData);
-                console.log(selectedID);
              
             }	
         });
@@ -55,7 +54,7 @@ export default function Sched() {
             }).then((response) => {
                 setIsEmpty(response.data.length)
                 setAppointment(response.data);
-                console.log(response.data) // Set the appointment state with the response data
+                // Set the appointment state with the response data
             });
         }
     }, [openSlots, flag, selectedID]);

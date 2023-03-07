@@ -14,11 +14,21 @@ export default function Slots({open, onClose, props}) {
       const singaporeTime = dt.toLocaleString('en-US', { timeZone: 'Asia/Singapore' });
       return singaporeTime;
   }
-  
+    const [user, setUser] = useState([]);
     const [selectedTime, setSelectedTime] = useState(null);
+    const [selectedTime2, setSelectedTime2] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
 
+    useEffect(()=>{
+      Axios.post('https://mysql-npoc.herokuapp.com/userbyid', {
+      p:props
+      }).then((response) => {
+        setUser(response.data[0]);
+      });
+    },[])
+    
     useEffect(() => {
+      //check appointments then hide the button with the same date and time to the appointment
       Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
         response.data.forEach((element) => {
           const buttonId = getCurrentDateTime(timeZone(element.date));
@@ -169,6 +179,13 @@ function recordAppointment(){
         onClose()
       }, 2000)
     })
+  //Notify the appointment to the user via email
+  Axios.post('https://mysql-npoc.herokuapp.com/emailappointment', {
+    f: user.firstName,
+    l: user.lastName,
+    d: getDate2(selectedDate),
+    t: selectedTime2
+    })
   }
   else{
     setFlag(false)
@@ -180,6 +197,41 @@ function recordAppointment(){
   const [popup, setPopup] = useState('')
   const [flag, setFlag] = useState()
 
+  const getDate2 = (pardate) => {
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const daysOfWeek = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    const myDate = new Date(timeZone(pardate));
+    const date = myDate.getDate();
+    const dayOfWeek = myDate.getDay();
+
+    return (
+      monthNames[myDate.getMonth()] + ' ' + date +
+      ', '+ myDate.getFullYear() + ' (' +
+      daysOfWeek[dayOfWeek] +
+      ')'
+    );
+  };
   return (
     <motion.div
         initial={{opacity: 0}}
@@ -214,43 +266,43 @@ function recordAppointment(){
                       
                               {val.period === 'open' && (
                               <>
-                              <button id={formatDate(val.date) + ' 10:00:00'} onClick={()=>handleTime("10:00:00")}
+                              <button id={formatDate(val.date) + ' 10:00:00'} onClick={()=>{handleTime("10:00:00"); setSelectedTime2("10AM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>10AM</button>
-                              <button id={formatDate(val.date) + ' 11:00:00'} onClick={()=>handleTime("11:00:00")}
+                              <button id={formatDate(val.date) + ' 11:00:00'} onClick={()=>{handleTime("11:00:00"); setSelectedTime2("11AM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>11AM</button>
-                              <button id={formatDate(val.date) + ' 12:00:00'} onClick={()=>handleTime("12:00:00")}
+                              <button id={formatDate(val.date) + ' 12:00:00'} onClick={()=>{handleTime("12:00:00"); setSelectedTime2("12PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>12PM</button>
-                              <button id={formatDate(val.date) + ' 13:00:00'} onClick={()=>handleTime("13:00:00")}
+                              <button id={formatDate(val.date) + ' 13:00:00'} onClick={()=>{handleTime("13:00:00"); setSelectedTime2("1PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>1PM</button>
-                              <button id={formatDate(val.date) + ' 14:00:00'} onClick={()=>handleTime("14:00:00")}
+                              <button id={formatDate(val.date) + ' 14:00:00'} onClick={()=>{handleTime("14:00:00"); setSelectedTime2("2PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>2PM</button>
-                              <button id={formatDate(val.date) + ' 15:00:00'} onClick={()=>handleTime("15:00:00")}
+                              <button id={formatDate(val.date) + ' 15:00:00'} onClick={()=>{handleTime("15:00:00"); setSelectedTime2("3PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>3PM</button>
-                              <button id={formatDate(val.date) + ' 16:00:00'} onClick={()=>handleTime("16:00:00")}
+                              <button id={formatDate(val.date) + ' 16:00:00'} onClick={()=>{handleTime("16:00:00"); setSelectedTime2("4PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>4PM</button>
                               </>
                               )}
                               {/*closed @ afternoon*/}
                               {val.period === 'afternoon' && (
                               <>
-                              <button id={formatDate(val.date) + ' 10:00:00'} onClick={()=>handleTime("10:00:00")}
+                              <button id={formatDate(val.date) + ' 10:00:00'} onClick={()=>{handleTime("10:00:00"); setSelectedTime2("10AM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>10AM</button>
-                              <button id={formatDate(val.date) + ' 11:00:00'} onClick={()=>handleTime("11:00:00")}
+                              <button id={formatDate(val.date) + ' 11:00:00'} onClick={()=>{handleTime("11:00:00"); setSelectedTime2("11AM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>11AM</button>
                               </>
                               )}
                               {/*closed @ morning*/}
                               {val.period === 'morning' && (
                               <>
-                              <button id={formatDate(val.date) + ' 12:00:00'} onClick={()=>handleTime("12:00:00")}
+                              <button id={formatDate(val.date) + ' 12:00:00'} onClick={()=>{handleTime("12:00:00"); setSelectedTime2("12PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>12PM</button>
-                              <button id={formatDate(val.date) + ' 13:00:00'} onClick={()=>handleTime("13:00:00")}
+                              <button id={formatDate(val.date) + ' 13:00:00'} onClick={()=>{handleTime("13:00:00"); setSelectedTime2("1PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>1PM</button>
-                              <button id={formatDate(val.date) + ' 14:00:00'} onClick={()=>handleTime("14:00:00")}
+                              <button id={formatDate(val.date) + ' 14:00:00'} onClick={()=>{handleTime("14:00:00"); setSelectedTime2("2PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>2PM</button>
-                              <button id={formatDate(val.date) + ' 15:00:00'} onClick={()=>handleTime("15:00:00")}
+                              <button id={formatDate(val.date) + ' 15:00:00'} onClick={()=>{handleTime("15:00:00"); setSelectedTime2("3PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>3PM</button>
-                              <button id={formatDate(val.date) + ' 16:00:00'} onClick={()=>handleTime("16:00:00")}
+                              <button id={formatDate(val.date) + ' 16:00:00'} onClick={()=>{handleTime("16:00:00"); setSelectedTime2("4PM")}}
                               className='focus:bg-gray-50 focus:text-black flex justify-center items-center border-2 xs:p-0 cursor-pointer hover:bg-gray-50 hover:text-black rounded-xl h-10 w-full py-5 px-5'>4PM</button>
                               </>
                               )}
