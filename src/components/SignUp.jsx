@@ -202,6 +202,11 @@ function getCurrentDate() {
                                         type="date"
                                         placeholder="Date of Birth"
                                         aria-label="date of birth"
+                                        value={setBirthday === '' ? (
+                                            'Date of Birth'
+                                        ) : (
+                                            birthday
+                                        )}
                                         //for useState
                                         onChange={(event) => (
                                             setBirthday(event.target.value)
