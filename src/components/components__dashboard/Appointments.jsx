@@ -187,9 +187,9 @@ const propsToPass2 = {
           </p>
           <div
             onClick={()=> {
-              const confirmed = window.confirm("Are you sure you want to cancel this patient's appointment?")
-              confirmed ? deleteRow(val.userID) : null
-              // setConfirm(true)
+              //const confirmed = window.confirm("Are you sure you want to cancel this patient's appointment?")
+              //confirmed ? deleteRow(val.userID) : null
+              setConfirm(true)
             }}
             className='bg-gray-500 hover:bg-gray-700 w-full text-center text-white px-3 py-1 rounded-full hover:cursor-pointer'
           >
