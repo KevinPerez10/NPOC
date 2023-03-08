@@ -14,6 +14,12 @@ export default function Dashboard() {
         role: "staff"
     },
     {
+        name: "TEST",
+        email: "1",
+        password: "1",
+        role: "staff"
+    },
+    {
         name: "Dr. Celna N. Perez",
         email: "doctor@npoc.com",
         password: "perez2023",
