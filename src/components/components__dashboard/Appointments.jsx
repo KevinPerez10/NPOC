@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import Appointments__RxData from './Appointments__RxData'
-import Appointments__Calendar from './Appointments__Calendar'
-import Appointments__Calendar__Edit from './Appointments__Calendar__Edit'
 import PatientHistory from '../components__records/PatientHistory'
 import Confirmation from '../Confirmation'
 import Confirmation__Comment from '../Confirmation__Comment'
@@ -21,7 +19,6 @@ export default function ComponentsAppointments() {
   const [selectedId, setSelectedId] = useState(null)
   const [openPatientHistory, setOpenPatientHistory] = useState(false)
   const [openAddRxData, setOpenAddRxData] = useState(false)
-  const [openCalendar, setOpenCalendar] = useState(false)
   const [appointmentList, setAppointmentList] = useState([])
   const [userList, setUserList] = useState([])
   const [patientID, setPatientID] = useState(null)
@@ -156,14 +153,7 @@ const propsToPass2 = {
           <p className='text-5xl text-button-lblue'>03</p>
       </div>*/}
       </div>
-      <div className='flex flex-col items-center mb-5 w-full mt-5'>
-        <div onClick={() => setOpenCalendar(true)} className='px-5 py-2 m-1 mb-5 xs:px-10 bg-button-dblue hover:bg-gray-700 bottom-0 z-10 absolute md:static text-white rounded-full transition-all md:self-start hover:cursor-pointer'>
-          Edit Calendar
-        </div>
-        <div className='w-full flex flex-col items-center'>
-          <Appointments__Calendar props={openCalendar}/>
-        </div>
-      </div>
+      
       {/* Appointments */}
       <div className='grid grid-cols-3 w-full gap-3 mb-5'>
         <p className='text-3xl place-self-center col-span-3'> Appointments: </p>
@@ -219,7 +209,7 @@ const propsToPass2 = {
       <PatientHistory props={propsToPass} openPatientHistory={openPatientHistory} onClosePatientHistory={() => setOpenPatientHistory(false)}/>
 
       </div>
-      <Appointments__Calendar__Edit open={openCalendar} onClose={() => setOpenCalendar(false)}/>
+      
     </div>
   )
 }
