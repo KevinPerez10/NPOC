@@ -175,9 +175,9 @@ export default function Dashboard() {
                             <div
                                 className='grid place-items-center text-3xl w-full mx-3 hover:cursor-pointer' alt=""
                                 onClick={() => {
-                                    const confirmed = window.confirm("Are you sure you want to log out?")
-                                    confirmed ? Logout() : null
-                                    // setConfirm(true)
+                                    //const confirmed = window.confirm("Are you sure you want to log out?")
+                                    //confirmed ? Logout() : null
+                                    setConfirm(true)
                                 }}
                             >
                                 <ion-icon name="log-out-outline"></ion-icon>
@@ -199,7 +199,7 @@ export default function Dashboard() {
                     </div>
                     
                 </div>
-                <Confirmation open={confirm} onClose={() => setConfirm(false)} message={'Are you sure you want to logout?'}/>
+                <Confirmation open={confirm} onClose={() => setConfirm(false)} message={'Are you sure you want to logout?'} onConfirm={()=> Logout()}/>
             </div>
             ) : (
                 <AdminLogIn Login={Login} error={error}/>

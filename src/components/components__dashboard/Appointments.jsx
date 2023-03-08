@@ -17,24 +17,28 @@ export default function ComponentsAppointments() {
   const [confirm, setConfirm] = useState(false)
   const [confirmComment, setConfirmComment] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
+  const [idcancel, setIdCancel] = useState(null)
   const [openPatientHistory, setOpenPatientHistory] = useState(false)
   const [openAddRxData, setOpenAddRxData] = useState(false)
   const [appointmentList, setAppointmentList] = useState([])
   const [userList, setUserList] = useState([])
   const [patientID, setPatientID] = useState(null)
-  const [flag, setFlag] = useState(0)
   const [n, setN] = useState("")
   const [p, setP] = useState("")
   const [b, setB] = useState("")
   const [a, setA] = useState("")
+  const [e, setE] = useState("")
+  const [d, setD] = useState("")
+  const [t, setT] = useState("")
 
-
+  //display all appointments
   useEffect(() => {
     Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
     setAppointmentList(response.data);
     });
-  }, [flag, openAddRxData, openPatientHistory]);
+  }, [openAddRxData, openPatientHistory, confirmComment]);
 
+  //for identification of appointments
   useEffect(() => {
     Axios.post('https://mysql-npoc.herokuapp.com/checkusers').then((response) => {
     setUserList(response.data);
@@ -125,7 +129,6 @@ function deleteRow(id) {
   Axios.post('https://mysql-npoc.herokuapp.com/deleteappointment', {
         s: id
       }).then(()=>{
-        setFlag(flag+1)
       })
 }
 
@@ -140,7 +143,48 @@ const propsToPass2 = {
   birthday: b, 
   address: a
 };
+const propsToPass3 = {
+  name: n,
+  email: e,
+  date: d,
+  time: t, 
+};
 
+const getDate2 = (pardate) => {
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const myDate = new Date(timeZone(pardate));
+  const date = myDate.getDate();
+  const dayOfWeek = myDate.getDay();
+
+  return (
+    monthNames[myDate.getMonth()] + ' ' + date +
+    ', '+ myDate.getFullYear() + ' (' +
+    daysOfWeek[dayOfWeek] +
+    ')'
+  );
+};
   return (
     <div className='bg-white font-poppins flex flex-col gap-10 justify-between items-center px-5 md:mx-10 md:rounded-xl md:shadow-md h-fit'>
       <div className='flex flex-col md:flex-row justify-around gap-5 w-full mt-10'>
@@ -181,6 +225,11 @@ const propsToPass2 = {
               //const confirmed = window.confirm("Are you sure you want to cancel this patient's appointment?")
               //confirmed ? deleteRow(val.userID) : null
               setConfirm(true)
+              setIdCancel(val.userID)
+              setN(getNameById(val.userID))
+              setE(getEmailById(val.userID))
+              setD(getDate2(timeZone(val.date)))
+              setT(convertTimeToString(timeZone(val.date)))
             }}
             className='bg-gray-500 hover:bg-gray-700 w-full text-center text-white px-3 py-1 rounded-full hover:cursor-pointer'
           >
@@ -202,7 +251,7 @@ const propsToPass2 = {
           )
         })}
         <Confirmation open={confirm} onClose={() => setConfirm(false)} onConfirm={() => setConfirmComment(true)} message={`Are you sure you want to cancel this patient's appointment?`}/>
-        <Confirmation__Comment open={confirmComment} onClose={() => setConfirmComment(false)}/>
+        <Confirmation__Comment props={propsToPass3}open={confirmComment} onClose={() => setConfirmComment(false)} onConfirm={()=>deleteRow(idcancel)}/>
         {/*up to here */}
 
       <Appointments__RxData props={propsToPass2} open={openAddRxData} onClose={() => setOpenAddRxData(false)}/>
