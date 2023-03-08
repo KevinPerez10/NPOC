@@ -188,24 +188,24 @@ const getDate2 = (pardate) => {
   );
 };
   return (
-    <div className='bg-white font-poppins flex flex-col gap-10 justify-between items-center px-5 md:mx-10 md:rounded-xl md:shadow-md h-fit'>
-      <div className='flex flex-col md:flex-row justify-around gap-5 w-full mt-10'>
-        <div className='bg-bg-dashboard px-20 py-5 flex flex-col items-center rounded-lg shadow-inner'>
+    <div className='bg-white font-poppins flex flex-col gap-10 items-center px-5 md:mx-10 md:rounded-xl md:shadow-md h-full'>
+      <p className='text-3xl place-self-center mt-5'> Appointments </p>
+      <div className='flex flex-col md:flex-row justify-around gap-5 w-full'>
+        <div className='bg-bg-dashboard w-1/2 px-20 py-5 flex flex-col items-center rounded-lg shadow-inner'>
           <p className=''>Pending Appointments</p>
           <p className='text-5xl text-button-lblue'>{appointmentList.length < 10? '0'+ appointmentList.length: appointmentList.length}</p>
         </div>
-        {/*<div className='bg-bg-dashboard px-20 py-5 flex flex-col items-center rounded-lg shadow-inner'>
-          <div>Cancelled</div>
+        <div className='bg-bg-dashboard w-1/2 px-20 py-5 flex flex-col items-center rounded-lg shadow-inner'>
+          <div>Cancelled Appointments</div>
           <p className='text-5xl text-button-lblue'>03</p>
-      </div>*/}
+        </div>
       </div>
       
       {/* Appointments */}
       <div className='grid grid-cols-3 w-full gap-3 mb-5'>
-        <p className='text-3xl place-self-center col-span-3'> Appointments: </p>
         {/*here */}
         {appointmentList.map((val,key) => {
-              return (
+        return (
         <div className='grid grid-cols-2 place-items-center gap-2 border-2 px-5 py-3 rounded-xl'>
           <p className='text-2xl col-span-2'>
             {getNameById(val.userID)}

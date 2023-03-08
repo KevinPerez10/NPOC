@@ -198,10 +198,14 @@ export default function ComponentsDashboard() {
 
   return (
     <div>
-        <div className='text-2xl md:px-5 grid lg:grid-cols-2 gap-4'>
+        <div className='text-2xl md:px-5 grid lg:grid-cols-4 gap-4'>
                 <div className='lg:col-span-1 col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
                     <div>All Patients</div>
                     <div>{displayLength(patientList)}</div>
+                </div>
+                <div className='lg:col-span-1 col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
+                    <div>All Records</div>
+                    <div>{displayLength(recordCount)}</div>
                 </div>
                 <div className='lg:col-span-1 col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
                     <div>New Patients</div>
@@ -209,15 +213,11 @@ export default function ComponentsDashboard() {
                     <div>{newpatients.np<10?"0"+newpatients.np:newpatients.np}</div>
                 </div>
                 <div className='lg:col-span-1 col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
-                    <div>All Records</div>
-                    <div>{displayLength(recordCount)}</div>
-                </div>
-                <div className='lg:col-span-1 col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
                     <div>Recent Records</div>
                     <div>({thisMonth(0)})</div>
                     <div>{displayLength(newRecord)}</div>
                 </div>
-                <div className='col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
+                <div className='lg:col-span-4 col-span-2 font-gilmer text-button-lblue bg-white flex flex-col justify-center items-center py-20 rounded shadow-md'>
                     <div>Pending Appointments</div>
                     <div>{displayLength(appointmentList)}</div>
                 </div>
@@ -425,7 +425,7 @@ export default function ComponentsDashboard() {
                 <br></br>
                                 */}
                 {/* Recent Visits */}
-                <div className='bg-white flex flex-col justify-center items-center py-10 rounded shadow-md col-span-2'>
+                <div className='bg-white flex flex-col justify-center items-center py-10 rounded shadow-md lg:col-span-4 col-span-2'>
                     <div className='font-gilmer text-button-lblue mb-3'>Recent Visits</div>
                     <div className='text-sm lg:text-xl flex flex-col text-white w-5/6 h-60 overflow-auto'>
                     {visits.map((val,key) => {

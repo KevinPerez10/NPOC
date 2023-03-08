@@ -25,7 +25,7 @@ export default function Nav(props) {
 
   return (
     <nav
-      className={`font-poppins hover:cursor-pointer transition-all ease-in duration-200 ${className}`}
+      className={`font-poppins cursor-pointer transition-all ease-in duration-200 ${className}`}
     >
         <div className={`flex items-center p-5 ${props.childClassName}`}>
             <Link to="/" className='flex items-center'>
