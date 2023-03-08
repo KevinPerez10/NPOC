@@ -94,6 +94,17 @@ export default function ForgotPass() {
             }
             })
       }
+      function isEmpty2(){
+        if(code==''){
+          // alert("Empty field.")
+          setFlag(false)
+          setPopup('Fill all required fields.')
+          setTimeout(() => setPopup(''), 5000)
+        }
+        else{
+          checkCode()
+        }
+      }
 
       const handleClick = () => {
         if (countdownFinished) {
@@ -195,7 +206,7 @@ return (
                                 >
                                 <button
                                     onClick={() => {
-                                        checkCode()
+                                        isEmpty2()
                                     }}
                                     className="w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl"
                                     type="button"

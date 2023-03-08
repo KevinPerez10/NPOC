@@ -33,7 +33,7 @@ export default function Confirmation__Comment({open, onClose, onConfirm, props})
                     <div 
                         onClick={() => {
                             onClose()
-                            //notifycancel()
+                            notifycancel()
                             onConfirm()
                         }}
                         className='text-white bg-button-dblue cursor-pointer rounded-full px-4 py-2 xs:order-2'

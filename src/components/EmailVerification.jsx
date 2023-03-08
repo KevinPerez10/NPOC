@@ -96,6 +96,18 @@ const navigate = useNavigate()
     const [popup, setPopup] = useState('')
     const [flag, setFlag] = useState()
 
+    function isEmpty(){
+      if(code==''){
+        // Empty field.")
+        setFlag(false)
+        setPopup('Fill all required fields.')
+        setTimeout(() => setPopup(''), 5000)
+      }
+      else{
+        checkCode()
+      }
+    }
+
   if (!open) return null
   return (
     <motion.div
@@ -144,7 +156,7 @@ const navigate = useNavigate()
                   </div>
                   
                   <div className='w-full flex items-center justify-center md:w-1/2 md:flex-row flex-col gap-3'>
-                    <div onClick={()=>checkCode()}className="cursor-pointer md:order-2 w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl">
+                    <div onClick={()=>isEmpty()}className="cursor-pointer md:order-2 w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl">
                       Continue
                     </div>
                     <div onClick={()=>{
