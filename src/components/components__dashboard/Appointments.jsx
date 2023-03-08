@@ -15,6 +15,7 @@ export default function ComponentsAppointments() {
 }
 
   const [confirm, setConfirm] = useState(false)
+  const [flag, setFlag] = useState(0)
   const [confirmComment, setConfirmComment] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
   const [idcancel, setIdCancel] = useState(null)
@@ -36,7 +37,7 @@ export default function ComponentsAppointments() {
     Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
     setAppointmentList(response.data);
     });
-  }, [openAddRxData, openPatientHistory, confirmComment]);
+  }, [flag, openAddRxData, openPatientHistory]);
 
   //for identification of appointments
   useEffect(() => {
@@ -129,6 +130,7 @@ function deleteRow(id) {
   Axios.post('https://mysql-npoc.herokuapp.com/deleteappointment', {
         s: id
       }).then(()=>{
+        setFlag(flag+1)
       })
 }
 
@@ -251,7 +253,7 @@ const getDate2 = (pardate) => {
           )
         })}
         <Confirmation open={confirm} onClose={() => setConfirm(false)} onConfirm={() => setConfirmComment(true)} message={`Are you sure you want to cancel this patient's appointment?`}/>
-        <Confirmation__Comment props={propsToPass3}open={confirmComment} onClose={() => setConfirmComment(false)} onConfirm={()=>deleteRow(idcancel)}/>
+        <Confirmation__Comment props={propsToPass3}open={confirmComment} onClose={() => setConfirmComment(false)} onConfirm={()=>{deleteRow(idcancel); setConfirmComment(false)}}/>
         {/*up to here */}
 
       <Appointments__RxData props={propsToPass2} open={openAddRxData} onClose={() => setOpenAddRxData(false)}/>

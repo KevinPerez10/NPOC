@@ -69,7 +69,6 @@ const recordInfo = () =>(
      b:balance,
      pi: patientID
     }).then(()=>{
-        console.log("success");
     })
      };
 //date
@@ -143,7 +142,7 @@ const recordInfo = () =>(
         setPopup('Inputs Recorded!')
         setTimeout(() => {
           setPopup('')
-        }, 5000)
+        }, 1000)
       }
       else {
         setFlag(false)

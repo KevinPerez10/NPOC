@@ -173,14 +173,9 @@ export default function RxData({open, onClose, props}) {
             setTimeout(() => {
                 setPopup('')
                 onClose()
-            }, 5000)
+            }, 1000)
             checkDelete()
         }
-    }
-
-    //Alert
-    const handleAlert = () => {
-        alert('Success! Changes have been saved.')
     }
 
     //Function of amount, deposit, balance, and total
