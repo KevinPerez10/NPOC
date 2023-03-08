@@ -20,7 +20,7 @@ module.exports = {
       },
       backgroundImage: {
         'npoc--landing__page': "url('/images/landing page.jpg')",
-        'npoc--appointment__page': "url('/images/pexels-ksenia-chernaya-5752254.jpg')",
+        'npoc--appointment__page': "url('/images/pexels-ksenia-chernaya-5752254.png')",
         'npoc--thankyou__page': "url('/images/thank you.jpg')",
         'dashboard--search__svg': "url('/svg/search-svgrepo-com.svg')",
         'signup--image': "url('/images/139472517_220155239842825_6914890826448897223_n.jpg')",

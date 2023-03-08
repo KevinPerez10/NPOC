@@ -43,27 +43,27 @@ export default function HomePage ()  {
                 <div className='text-black flex flex-col items-center w-full lg:w-4/5 mt-40 lg:mt-60'>
                     <h1 className='text-4xl mb-10'>About Us</h1>
                     <div className='md:flex w-full'>
-                        <p className='md:w-1/2 text-xl flex flex-col justify-center items-center px-10'>
+                        <p className='md:w-1/2 text-xl md:h-screen flex flex-col justify-center items-center px-10'>
                             <h1 className='font-gilmer text-2xl'>
                                 Welcome to Nolasco-Perez Optical Clinic
                             </h1><br />
                             Where fashion and function meet. We specialize in eyewear that enhances your vision and elevates your personal style. <br /><br />
                             Whether you're in need of new prescription glasses or just looking for the perfect pair of sunglasses, we have something for everyone. 
                         </p>
-                        <div className='md:w-1/2 h-screen grid place-items-center'>
+                        <div className='md:w-1/2 md:h-screen mb-40 grid place-items-center'>
                             <img className='w-full md:h-4/5 object-cover md:rounded-3xl shadow-2xl' src="./images/pexels-antoni-shkraba-6749792.jpg" alt="" />
                         </div>
                     </div>
-                    <div className='my-20 md:flex w-full'>
-                        <p className='md:order-2 md:w-1/2 md:mb-0 mb-10 text-xl flex flex-col justify-center items-center px-10'>
+                    <div className='md:flex w-full'>
+                        <p className='md:order-2 md:w-1/2 md:h-screen md:mb-0 mb-10 text-xl flex flex-col justify-center items-center px-10'>
                             <h1 className='font-gilmer text-2xl'>
                                 With wide selection of frames
                             </h1><br />
                             From the latest designer collections to timeless classics, we're confident you'll find the perfect pair to suit your needs and taste. <br /><br />
                             Our experienced optometrist is here to help you find the perfect fit and ensure your complete satisfaction.
                         </p>
-                        <div className='md:w-1/2 md:flex-1 h-screen grid place-items-center'>
-                            <img className='w-full md:h-4/5 object-cover md:rounded-3xl shadow-2xl' src="./images/243800926_862706367969244_1424878907909737901_n.jpg" alt="" />
+                        <div className='md:w-1/2 md:flex-1 md:h-screen mb-20 grid place-items-center'>
+                            <img className='w-full md:h-4/5 object-cover md:rounded-3xl shadow-2xl' src="./images/243800926_862706367969244_1424878907909737901_n.png" alt="" />
                         </div>
                     </div>
                     <div className='my-10 text-xl flex flex-col items-center gap-5 w-full'>
