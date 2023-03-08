@@ -20,7 +20,7 @@ export default function Sched() {
     const [isEmpty, setIsEmpty] = useState(0)
     const [selectedID, setSelectedId] = useState()
     const [loginStatus, setLoginStatus] = useState("");
-    const [error, setError] = useState();
+    const [error, setError] = useState("");
     const [appointment, setAppointment] = useState([])
     const [flag, setFlag] = useState(0)
 

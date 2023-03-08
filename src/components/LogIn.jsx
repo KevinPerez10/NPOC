@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 export default function LogIn({Login, error}) {
     const [details, setDetails] = useState({email: "", password: ""})
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState("")
     const [visible, setVisible] = useState(false)
     // const submitHandler = e => {
     //     e.preventDefault()
@@ -44,7 +44,7 @@ return (
                 <div className='lg:w-1/2 lg:m-0 lg:p-0 lg:shadow-none flex flex-col justify-center items-center shadow-lg rounded-3xl bg-white w-4/5 h-3/4'>
                     <form className='w-4/5 grid grid-cols-2 gap-4'>
                     <h2 className="col-span-2 font-gilmer text-button-dblue text-2xl mb-4"> Welcome! <h4 className='text-xs'>Please login to your account</h4> </h2>
-                    <p className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${errors === '' ? 'hidden' : ''}`}>{errors}</p>
+                    {errors!==""?<p className={`z-20 bg-red-500 text-white p-3 rounded-lg absolute top-3 left-1/2 transform -translate-x-1/2 transition-all ${errors === '' ? 'hidden' : ''}`}>{errors}</p>:<p></p>}
                         <div className="col-span-2 flex items-center border-b border-gray py-2">
                             <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                     type="text"
