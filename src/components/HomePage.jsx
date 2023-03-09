@@ -9,9 +9,9 @@ export default function HomePage ()  {
                         initial={{opacity: 0}}
                         animate={{opacity: 1}}
                         exit={{opacity: 0}}>
-                <Nav className='text-white fixed justify-center w-full self-center top-0' childClassName='justify-center' text='hidden lg:flex' logo='hidden lg:flex'/>
+                <Nav className='text-white fixed justify-center w-full self-center top-0' childClassName='justify-center' text='lg:flex' logo='lg:flex'/>
                 
-                <div className="xxs:bg-center bg-npoc--landing__page bg-cover bg-no-repeat h-screen w-full shadow-2xl">
+                <div className="bg-center bg-npoc--landing__page bg-cover bg-no-repeat h-screen w-full shadow-2xl">
                     <div className='flex flex-col justify-center items-center bg-gray-900/40 h-screen w-full'>
                         <h1 className="text-2xl font-gilmer xs:text-4xl lg:text-5xl xl:text-7xl text-white w-4/5">
                             MORE THAN MEETS THE EYE

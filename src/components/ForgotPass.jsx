@@ -178,82 +178,84 @@ return (
             )}
         <Nav className='self-center fixed lg:self-start' text='hidden text-black lg:flex'/>
         <div className='h-screen grid place-items-center font-poppins bg-forgot--password bg-cover bg-no-repeat lg:bg-none lg:flex'>
-            <div className='lg:w-1/2 lg:m-0 lg:p-0 lg:shadow-none flex flex-col justify-center items-center bg-white w-4/5 h-3/4 p-10 shadow-lg rounded-3xl'>
-                {/* Form Group */}
-                {openSendCode ? (
-                    <form className='grid grid-cols-2 w-full md:w-1/2 lg:w-4/5 gap-4'>
-                            <h2 className="text-center col-span-2 mb-4 w-full text-xl"> Enter the code that we sent through your email. </h2>
-                            <div className="col-span-2 flex items-center border-b border-gray py-2">
-                                <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                        type="text"
-                                        placeholder="Enter a 6-digit code"
-                                        maxLength='6'
-                                        value={code}
-                                        onChange={(e) => setCode(e.target.value)}
-                                />
-                            </div>
-                            <div className='col-span-2'>
-                                <div
-                                id="resend"
-                                onClick={()=>handleClick()}
-                                disabled={isDisabled}
-                                className={`text-sm mt-5 text-center ${isDisabled ? 'text-gray-400 cursor-default' : 'hover:text-link cursor-pointer'}`}
-                                >
-                                    {isDisabled ? `Wait for ${counter} seconds` : 'Resend Code?'}
+            <div className='h-screen w-full grid place-items-center font-poppins lg:bg-none lg:flex lg:backdrop-blur-none backdrop-blur-lg'>
+                <div className='lg:w-1/2 lg:m-0 lg:p-0 lg:shadow-none flex flex-col justify-center items-center bg-white w-4/5 h-3/4 p-10 shadow-lg rounded-3xl'>
+                    {/* Form Group */}
+                    {openSendCode ? (
+                        <form className='grid grid-cols-2 w-full md:w-1/2 lg:w-4/5 gap-4'>
+                                <h2 className="text-center col-span-2 mb-4 w-full text-xl"> Enter the code that we sent through your email. </h2>
+                                <div className="col-span-2 flex items-center border-b border-gray py-2">
+                                    <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                                            type="text"
+                                            placeholder="Enter a 6-digit code"
+                                            maxLength='6'
+                                            value={code}
+                                            onChange={(e) => setCode(e.target.value)}
+                                    />
                                 </div>
-                            </div>
-                            <div className='col-span-2'
-                                >
-                                <button
-                                    onClick={() => {
-                                        isEmpty2()
-                                    }}
-                                    className="w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl"
-                                    type="button"
-                                >
-                                    Continue
-                                </button>
-                                {/*<button
-                                    onClick={() => setOpenSendCode(false)}
-                                >
-                                    cancel
-                                </button>*/}
-                            </div>
-                    </form>
-                ) : (
-                    <form className='grid grid-cols-2 w-full md:w-1/2 lg:w-4/5 gap-4'>
-                        <h2 className="text-center col-span-2 mb-4 w-full text-xl"> Enter your email and we will send you a code to reset your password. </h2>
-                            <div className="col-span-2 flex items-center border-b border-gray py-2">
-                                <input onChange={(event) => (setEmail(event.target.value))} 
-                                    className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                        type="email"
-                                        placeholder="Email"
-                                        aria-label="email"
-                                        />
-                            </div>
-                            <div
-                            onClick={() => {isEmpty();}}
-                                className='col-span-2'
-                                >
-                                <button className="w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl"
-                                        type="button">
-                                    Send Code
-                                </button>
-                            </div>
-                    </form>
-                )}
-<div className="w-full text-center mt-10">
-                    Go back to <button onClick={()=>{navigate('/Sched', { state: { prop } })}} className='text-link'>Log In</button>
+                                <div className='col-span-2'>
+                                    <div
+                                    id="resend"
+                                    onClick={()=>handleClick()}
+                                    disabled={isDisabled}
+                                    className={`text-sm mt-5 text-center ${isDisabled ? 'text-gray-400 cursor-default' : 'hover:text-link cursor-pointer'}`}
+                                    >
+                                        {isDisabled ? `Wait for ${counter} seconds` : 'Resend Code?'}
+                                    </div>
+                                </div>
+                                <div className='col-span-2'
+                                    >
+                                    <button
+                                        onClick={() => {
+                                            isEmpty2()
+                                        }}
+                                        className="w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl"
+                                        type="button"
+                                    >
+                                        Continue
+                                    </button>
+                                    {/*<button
+                                        onClick={() => setOpenSendCode(false)}
+                                    >
+                                        cancel
+                                    </button>*/}
+                                </div>
+                        </form>
+                    ) : (
+                        <form className='grid grid-cols-2 w-full md:w-1/2 lg:w-4/5 gap-4'>
+                            <h2 className="text-center col-span-2 mb-4 w-full text-xl"> Enter your email and we will send you a code to reset your password. </h2>
+                                <div className="col-span-2 flex items-center border-b border-gray py-2">
+                                    <input onChange={(event) => (setEmail(event.target.value))}
+                                        className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                                            type="email"
+                                            placeholder="Email"
+                                            aria-label="email"
+                                            />
+                                </div>
+                                <div
+                                onClick={() => {isEmpty();}}
+                                    className='col-span-2'
+                                    >
+                                    <button className="w-full flex-shrink-0 bg-button-dblue hover:bg-gray-700 border-button-dblue hover:border-gray-700 text-sm border-4 text-white py-1 px-2 rounded-xl"
+                                            type="button">
+                                        Send Code
+                                    </button>
+                                </div>
+                        </form>
+                    )}
+                <div className="w-full text-center mt-10">
+                        Go back to <button onClick={()=>{navigate('/Sched', { state: { prop } })}} className='text-link'>Log In</button>
+                    </div>
                 </div>
+                <div className='hidden lg:inline lg:absolute lg:right-0 lg:inset-y-0 lg:w-1/2'>
+                    <img
+                        src="./images/145968518_463031511397312_2518398407531758990_n.jpg"
+                        alt=""
+                        className='object-cover w-full h-full'
+                    />
+                </div>
+                <ForgotPass__NewPass props={propsToPass} open={openNewPass} onClose={() => setOpenNewPass(false)}/>
             </div>
-            <div className='hidden lg:inline lg:absolute lg:right-0 lg:inset-y-0 lg:w-1/2'>
-                <img
-                    src="./images/145968518_463031511397312_2518398407531758990_n.jpg"
-                    alt=""
-                    className='object-cover w-full h-full'
-                />
-            </div>
-            <ForgotPass__NewPass props={propsToPass} open={openNewPass} onClose={() => setOpenNewPass(false)}/>
         </div>
     </motion.div>
   )

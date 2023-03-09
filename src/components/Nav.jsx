@@ -15,7 +15,7 @@ export default function Nav(props) {
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
-      setClassName(`${props.className} lg:bg-white lg:shadow-lg`)
+      setClassName(`${props.className} bg-white shadow-lg`)
       setText(`${props.text} text-black`)
     } else {
       setClassName(props.className)
@@ -27,7 +27,7 @@ export default function Nav(props) {
     <nav
       className={`font-poppins cursor-pointer transition-all ease-in duration-200 ${className}`}
     >
-        <div className={`flex items-center p-5 ${props.childClassName}`}>
+        <div className={`flex items-center p-2 ${props.childClassName}`}>
             <Link to="/" className='flex items-center'>
                 <img className={`w-10 ${props.logo}`} src="./images/logo.png" alt="" />
                 <p className={`text-3xl ml-2 ${text}`}>NPOC</p>
