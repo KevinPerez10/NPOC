@@ -337,7 +337,7 @@ function recordAppointment(){
                 </div>
                 <div className='hidden lg:min-w-1/2 lg:inline lg:absolute lg:right-0 lg:inset-y-0 lg:w-1/2'>
                     <img
-                        src="./images/pexels-nataliya-vaitkevich-5842835.jpg"
+                        src="./images/pexels-nataliya-vaitkevich-5842835.png"
                         alt=""
                         className='object-cover w-full h-full'
                     />
