@@ -28,7 +28,7 @@ module.exports = {
         'emailverification': "url('/images/229332455_188066033341715_4624224522904347246_n.jpg')",
         'eye--exam': "url('/images/eye exam.jpg')",
         'new--frame': "url('/images/new frame.jpg')",
-        'available--slots': "url('/images/pexels-nataliya-vaitkevich-5842835.jpg')",
+        'available--slots': "url('/images/pexels-nataliya-vaitkevich-5842835.png')",
         'forgot--password': "url('/images/145968518_463031511397312_2518398407531758990_n.jpg')"
       },
       fontSize: {
