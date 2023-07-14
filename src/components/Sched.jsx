@@ -25,7 +25,7 @@ export default function Sched() {
     const [flag, setFlag] = useState(0)
 
     useEffect(()=>{
-        Axios.post("https://mysql-npoc.herokuapp.com/login", {
+        Axios.post("http://localhost:5174/login", {
             email: props.email,
             password: props.password
             }).then((response) => {
@@ -49,7 +49,7 @@ export default function Sched() {
     }
     useEffect(() => {
         if(selectedID) { // Add this condition to check if selectedID is defined
-            Axios.post('https://mysql-npoc.herokuapp.com/appointment', {
+            Axios.post('http://localhost:5174/appointment', {
               s: selectedID
             }).then((response) => {
                 setIsEmpty(response.data.length)
@@ -60,7 +60,7 @@ export default function Sched() {
     }, [openSlots, flag, selectedID]);
      
     const Login = details => {
-        Axios.post("https://mysql-npoc.herokuapp.com/login", {
+        Axios.post("http://localhost:5174/login", {
             email: details.email,
             password: details.password
         }).then((response) => {
@@ -125,7 +125,7 @@ export default function Sched() {
       }
 
       function deleteRow(id) {
-        Axios.post('https://mysql-npoc.herokuapp.com/deleteappointment', {
+        Axios.post('http://localhost:5174/deleteappointment', {
               s: id
             }).then((reponse)=>{
                 setFlag(flag+1)

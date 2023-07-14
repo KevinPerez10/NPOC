@@ -15,7 +15,7 @@ export default function EmailVerification({open, onClose, props}) {
 const navigate = useNavigate()
   const [code, setCode] = useState('')
   const checkCode = () => {
-    axios.post('https://mysql-npoc.herokuapp.com/checkcode', {
+    axios.post('http://localhost:5174/checkcode', {
      c:code,
      e:props.email
     }).then((response)=>{
@@ -38,7 +38,7 @@ const navigate = useNavigate()
   }
 
   const signupInfo = () => {
-    axios.post('https://mysql-npoc.herokuapp.com/create', {
+    axios.post('http://localhost:5174/create', {
      f: props.first,
      l: props.last,
      b: props.birthday,
@@ -71,7 +71,7 @@ const navigate = useNavigate()
     
     
     const handleSubmit = () => {
-      axios.post("https://mysql-npoc.herokuapp.com/emailverification", {
+      axios.post("http://localhost:5174/emailverification", {
           first: props.first,
           last: props.last,
           email: props.email 

@@ -10,7 +10,7 @@ export default function PatientHistory({openPatientHistory, onClosePatientHistor
     const [selectedId, setSelectedId] = useState(null)
     
     useEffect(() => {
-      Axios.post('https://mysql-npoc.herokuapp.com/patientbyid', {
+      Axios.post('http://localhost:5174/patientbyid', {
         id:props.prop1
       }).then((response) => {
       setPatient(response.data);
@@ -23,7 +23,7 @@ export default function PatientHistory({openPatientHistory, onClosePatientHistor
     const [negation, setNegation] = useState('');
 
       useEffect(() => {
-      Axios.post('https://mysql-npoc.herokuapp.com/recordbyid', {
+      Axios.post('http://localhost:5174/recordbyid', {
         id:props.prop1,
         dp:year,
         n:negation

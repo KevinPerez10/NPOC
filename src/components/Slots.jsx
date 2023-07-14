@@ -20,7 +20,7 @@ export default function Slots({open, onClose, props}) {
     const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect(()=>{
-      Axios.post('https://mysql-npoc.herokuapp.com/userbyid', {
+      Axios.post('http://localhost:5174/userbyid', {
       p:props
       }).then((response) => {
         setUser(response.data[0]);
@@ -29,7 +29,7 @@ export default function Slots({open, onClose, props}) {
     
     useEffect(() => {
       //check appointments then hide the button with the same date and time to the appointment
-      Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
+      Axios.post('http://localhost:5174/checkappointments').then((response) => {
         response.data.forEach((element) => {
           const buttonId = getCurrentDateTime(timeZone(element.date));
           hideButton(buttonId);
@@ -83,7 +83,7 @@ useEffect(() => {
     const promises = [];
     date.map((dt) => {
       promises.push(
-        Axios.post('https://mysql-npoc.herokuapp.com/checkavailability', {
+        Axios.post('http://localhost:5174/checkavailability', {
           d: formatDate(dt)
         })
       );
@@ -167,7 +167,7 @@ function formatDate(time){
 
 function recordAppointment(){
   if (selectedTime != null) {
-  Axios.post('https://mysql-npoc.herokuapp.com/addappointment', {
+  Axios.post('http://localhost:5174/addappointment', {
     d: selectedDate,
     t: selectedTime,
     u: props
@@ -180,7 +180,7 @@ function recordAppointment(){
       }, 2000)
     })
   //Notify the appointment to the user via email
-  Axios.post('https://mysql-npoc.herokuapp.com/emailappointment', {
+  Axios.post('http://localhost:5174/emailappointment', {
     f: user.firstName,
     l: user.lastName,
     d: getDate2(selectedDate),

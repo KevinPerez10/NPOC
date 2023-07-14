@@ -34,14 +34,14 @@ export default function ComponentsAppointments() {
 
   //display all appointments
   useEffect(() => {
-    Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
+    Axios.post('http://localhost:5174/checkappointments').then((response) => {
     setAppointmentList(response.data);
     });
   }, [flag, openAddRxData, openPatientHistory]);
 
   //for identification of appointments
   useEffect(() => {
-    Axios.post('https://mysql-npoc.herokuapp.com/checkusers').then((response) => {
+    Axios.post('http://localhost:5174/checkusers').then((response) => {
     setUserList(response.data);
     });
   }, []);
@@ -110,7 +110,7 @@ function convertTimeToString(pardate) {
 }
 
 const checkStatus = (fn,uid) => {
-    Axios.post('https://mysql-npoc.herokuapp.com/checkpatients', {
+    Axios.post('http://localhost:5174/checkpatients', {
       fn:fn
     }).then((response) => {
     if(response.data == false){
@@ -127,7 +127,7 @@ const checkStatus = (fn,uid) => {
 }
 
 function deleteRow(id) {
-  Axios.post('https://mysql-npoc.herokuapp.com/deleteappointment', {
+  Axios.post('http://localhost:5174/deleteappointment', {
         s: id
       }).then(()=>{
         setFlag(flag+1)

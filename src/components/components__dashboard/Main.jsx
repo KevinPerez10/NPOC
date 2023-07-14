@@ -25,20 +25,20 @@ export default function ComponentsDashboard() {
     const [newRecord, setNewRecord] = useState([])
     const [visits, setVisits] = useState([])
     useEffect(() => {
-        Axios.post('https://mysql-npoc.herokuapp.com/allpatients').then((response) => {
+        Axios.post('http://localhost:5174/allpatients').then((response) => {
         setPatientList(response.data);
         });
       },[]);
       //Visits
       useEffect(() => {
-        Axios.post('https://mysql-npoc.herokuapp.com/visits').then((response) => {
+        Axios.post('http://localhost:5174/visits').then((response) => {
         setVisits(response.data);
         });
       },[]);
 
       /*useEffect(() => {
         //sales table
-        Axios.post('https://mysql-npoc.herokuapp.com/allrecords', {
+        Axios.post('http://localhost:5174/allrecords', {
             f: first,
             s: second
         }).then((response) => {
@@ -48,7 +48,7 @@ export default function ComponentsDashboard() {
 
     /*useEffect(()=>{
         //totals
-        Axios.post('https://mysql-npoc.herokuapp.com/tableamount', {
+        Axios.post('http://localhost:5174/tableamount', {
             f: one,
             s: two
         }).then((response) => {
@@ -57,7 +57,7 @@ export default function ComponentsDashboard() {
     },[one,two])*/
 
     /*useEffect(() => {
-        Axios.post('https://mysql-npoc.herokuapp.com/withbalance',{
+        Axios.post('http://localhost:5174/withbalance',{
             s:search
         }).then((response) => {
         setWithBalance(response.data);
@@ -65,14 +65,14 @@ export default function ComponentsDashboard() {
       }, [withBalance]);*/
 
       useEffect(() => {
-        Axios.post('https://mysql-npoc.herokuapp.com/checkappointments').then((response) => {
+        Axios.post('http://localhost:5174/checkappointments').then((response) => {
         setAppointmentList(response.data);
         });
       },[]);
 
       //this month sales
       /*useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/monthsales', {
+        Axios.post('http://localhost:5174/monthsales', {
             f: "MONTH(createdAt) = MONTH(CURRENT_DATE - INTERVAL 0 MONTH) AND ",
             s: "0 MONTH"
         }).then((response) => {
@@ -81,7 +81,7 @@ export default function ComponentsDashboard() {
       },[])*/
       //last month sales
       /*useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/monthsales', {
+        Axios.post('http://localhost:5174/monthsales', {
             f: "MONTH(createdAt) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH) AND ",
             s: "1 MONTH"
         }).then((response) => {
@@ -90,7 +90,7 @@ export default function ComponentsDashboard() {
       },[])*/
       //this year sales
       /*useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/yearsales', {
+        Axios.post('http://localhost:5174/yearsales', {
             c: 0
         }).then((response) => {
             setSalesThisYear(response.data[0]);
@@ -98,7 +98,7 @@ export default function ComponentsDashboard() {
       },[])*/
       //last year sales
       /*useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/yearsales', {
+        Axios.post('http://localhost:5174/yearsales', {
             c: 1
         }).then((response) => {
             setSalesLastYear(response.data[0]);
@@ -106,7 +106,7 @@ export default function ComponentsDashboard() {
       },[])*/
        //record count
        useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/recordcount', {
+        Axios.post('http://localhost:5174/recordcount', {
             add: ""
         }).then((response) => {
             setRecordCount(response.data);
@@ -114,14 +114,14 @@ export default function ComponentsDashboard() {
       },[])
       //new patients
       useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/newpatients', {
+        Axios.post('http://localhost:5174/newpatients', {
         }).then((response) => {
             setNewPatients(response.data[0]);
         });
       },[])
       //new records
       useEffect(()=>{
-        Axios.post('https://mysql-npoc.herokuapp.com/recordcount', {
+        Axios.post('http://localhost:5174/recordcount', {
             add: "WHERE MONTH(createdAt) = MONTH(CURRENT_DATE()) AND YEAR(createdAt) = YEAR(CURRENT_DATE())"
         }).then((response) => {
             setNewRecord(response.data);

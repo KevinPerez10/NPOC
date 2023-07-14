@@ -109,7 +109,7 @@ function getCurrentDate() {
             setTimeout(() => setError(''), 5000)
         }
         else if (email.includes('@') && email.includes('.com')) {
-        axios.post('https://mysql-npoc.herokuapp.com/checkemail', {
+        axios.post('http://localhost:5174/checkemail', {
          e:email
         }).then((response)=>{
             if(response.data==false){
@@ -133,7 +133,7 @@ function getCurrentDate() {
     }
     }
     const handleSubmit = () => {
-    axios.post("https://mysql-npoc.herokuapp.com/emailverification", {
+    axios.post("http://localhost:5174/emailverification", {
         first: first,
         last: last,
         email:email 

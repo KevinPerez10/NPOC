@@ -20,7 +20,7 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
       setTimeout(() => setPopup(''), 5000)
     }
     else{
-    axios.post('https://mysql-npoc.herokuapp.com/changepassword', {
+    axios.post('http://localhost:5174/changepassword', {
         id: props.id,
         ps:newPassword
         })

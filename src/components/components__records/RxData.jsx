@@ -34,7 +34,7 @@ export default function RxData({open, onClose, props}) {
     const [pid, setpid] = useState()
 
     useEffect(() => {
-        Axios.post('https://mysql-npoc.herokuapp.com/recordbyrid', {
+        Axios.post('http://localhost:5174/recordbyrid', {
           id: props.prop1
         }).then((response) => {
         setOculusDextrus(response.data[0].od);
@@ -53,7 +53,7 @@ export default function RxData({open, onClose, props}) {
         });
       }, []);
       const getProfile = (e) => {
-        Axios.post('https://mysql-npoc.herokuapp.com/patientbyid', {
+        Axios.post('http://localhost:5174/patientbyid', {
         id:e
       }).then((response) => {
       setName(response.data[0].name);
@@ -68,7 +68,7 @@ export default function RxData({open, onClose, props}) {
       const [balance, setBalance] = useState(0)
   
       useEffect(() => {
-        Axios.post('https://mysql-npoc.herokuapp.com/transactionbytid', {
+        Axios.post('http://localhost:5174/transactionbytid', {
           id:props.prop1
         }).then((response) => {
             setAmount(response.data[0].amount);
@@ -94,7 +94,7 @@ export default function RxData({open, onClose, props}) {
     //add record
 
     const recordRx= (patientID) => {
-    Axios.post('https://mysql-npoc.herokuapp.com/addrecord', {
+    Axios.post('http://localhost:5174/addrecord', {
      f:name,
      p:phone,
      od:oculusDextrus,
@@ -115,7 +115,7 @@ export default function RxData({open, onClose, props}) {
      };
      //add transaction
      const recordTransaction= (patientID) => {
-        Axios.post('https://mysql-npoc.herokuapp.com/transaction', {
+        Axios.post('http://localhost:5174/transaction', {
          a:amount,
          p:payment,
          b:balance,
@@ -126,7 +126,7 @@ export default function RxData({open, onClose, props}) {
          };
     //update patient profile
     const updatePatient= (patientID) => {
-        Axios.post('https://mysql-npoc.herokuapp.com/updatepatientprofile', {
+        Axios.post('http://localhost:5174/updatepatientprofile', {
          id:patientID,
          n:name,
          ad:address,
@@ -137,7 +137,7 @@ export default function RxData({open, onClose, props}) {
          };
 
     function deleteRow(id) {
-        Axios.post('https://mysql-npoc.herokuapp.com/deleteappointment', {
+        Axios.post('http://localhost:5174/deleteappointment', {
             s: id
             })
         }

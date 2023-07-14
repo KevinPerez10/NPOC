@@ -11,7 +11,7 @@ const AddRxData = ({open, onClose}) => {
   const [birthday, setBirthday] = useState("");
 
 const recordInfo = () =>(
-  axios.post('https://mysql-npoc.herokuapp.com/addinfo', {
+  axios.post('http://localhost:5174/addinfo', {
     f:name,
     ad:address,
     p:phone,
@@ -21,7 +21,7 @@ const recordInfo = () =>(
     })
 );
     async function getpatientID(){
-      let response = await axios.post('https://mysql-npoc.herokuapp.com/patientid')
+      let response = await axios.post('http://localhost:5174/patientid')
       return (response.data[0].patientID);
       };
   //patient rx
@@ -38,7 +38,7 @@ const recordInfo = () =>(
   const [tint, setTint] = useState("");
 //add record
   const recordRx= (patientID) => {
-    axios.post('https://mysql-npoc.herokuapp.com/addrecord', {
+    axios.post('http://localhost:5174/addrecord', {
      f:name,
      p:phone,
      od:oculusDextrus,
@@ -63,7 +63,7 @@ const recordInfo = () =>(
   const [balance, setBalance] = useState(0);
 
   const recordTransaction= (patientID) => {
-    axios.post('https://mysql-npoc.herokuapp.com/transaction', {
+    axios.post('http://localhost:5174/transaction', {
      a:amount,
      p:payment,
      b:balance,

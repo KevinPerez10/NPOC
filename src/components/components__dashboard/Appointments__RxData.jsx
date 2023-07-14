@@ -10,7 +10,7 @@ export default function Appointments__RxData({open, onClose, props}) {
         const bd = changeformat(props.birthday);
       
         return new Promise((resolve, reject) => {
-          axios.post('https://mysql-npoc.herokuapp.com/addinfo', {
+          axios.post('http://localhost:5174/addinfo', {
             f: name,
             ad: props.address,
             p: props.phone,
@@ -32,7 +32,7 @@ export default function Appointments__RxData({open, onClose, props}) {
     }
 
     async function getpatientID(){
-        let response = await axios.post('https://mysql-npoc.herokuapp.com/patientid')
+        let response = await axios.post('http://localhost:5174/patientid')
         return (response.data[0].patientID);
     };
 
@@ -51,7 +51,7 @@ export default function Appointments__RxData({open, onClose, props}) {
 
     //add record
     const recordRx= (patientID) => {
-        axios.post('https://mysql-npoc.herokuapp.com/addrecord', {
+        axios.post('http://localhost:5174/addrecord', {
             f:props.name,
             p:props.phone,
             od:oculusDextrus,
@@ -77,7 +77,7 @@ export default function Appointments__RxData({open, onClose, props}) {
     const [balance, setBalance] = useState(0);
 
     const recordTransaction= (patientID) => {
-        axios.post('https://mysql-npoc.herokuapp.com/transaction', {
+        axios.post('http://localhost:5174/transaction', {
          a:amount,
          p:payment,
          b:balance,
@@ -118,7 +118,7 @@ export default function Appointments__RxData({open, onClose, props}) {
         setBalance(0);
     }
     function deleteRow(id) {
-        axios.post('https://mysql-npoc.herokuapp.com/deleteappointment', {
+        axios.post('http://localhost:5174/deleteappointment', {
               s: id
             }).then(()=>{
                 onClose()

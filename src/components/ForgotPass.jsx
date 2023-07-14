@@ -33,7 +33,7 @@ export default function ForgotPass() {
     function isEmpty(){
         if(email!=""){
             if (email.includes('@')&& email.includes('.com')) {
-                axios.post('https://mysql-npoc.herokuapp.com/checkemail', {
+                axios.post('http://localhost:5174/checkemail', {
                 e:email
                 }).then((response)=>{
                     if(response.data==false){
@@ -67,7 +67,7 @@ export default function ForgotPass() {
     }
 
     const handleSubmit = (first, last) => {
-        axios.post("https://mysql-npoc.herokuapp.com/forgotpassword", {
+        axios.post("http://localhost:5174/forgotpassword", {
             first: first,
             last: last, 
             email:email 
@@ -79,7 +79,7 @@ export default function ForgotPass() {
       };
 
       function checkCode(){
-        axios.post('https://mysql-npoc.herokuapp.com/checkcode', {
+        axios.post('http://localhost:5174/checkcode', {
             c:code,
             e:email
            }).then((response)=>{
@@ -131,7 +131,7 @@ export default function ForgotPass() {
       };
 
       const handlesubmit = () => {
-        axios.post("https://mysql-npoc.herokuapp.com/forgotpassword", {
+        axios.post("http://localhost:5174/forgotpassword", {
             first: firstName,
             last: lastName,
             email: email 

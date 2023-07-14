@@ -26,7 +26,7 @@ export default function Main__Reports({open, onClose, props}) {
     }
 
     const updatePayment = (pmt,bln) => {
-        axios.post('https://mysql-npoc.herokuapp.com/updatepayment', {
+        axios.post('http://localhost:5174/updatepayment', {
          p: pmt,
          b: bln,
          id: props.tID

@@ -13,7 +13,7 @@ export default function Appointments__Calendar(props) {
  const [errorMessage, setErrorMessage] = useState(null);
  const fetchEvents = () => {
   //whole
-  Axios.post('https://mysql-npoc.herokuapp.com/calendarwhole')
+  Axios.post('http://localhost:5174/calendarwhole')
     .then((response) => {
       setWhole(
         response.data.map((date) => {
@@ -30,7 +30,7 @@ export default function Appointments__Calendar(props) {
       setErrorMessage('There was an error loading the calendar events.');
     });
   //morning
-  Axios.post('https://mysql-npoc.herokuapp.com/calendarmorning')
+  Axios.post('http://localhost:5174/calendarmorning')
     .then((response) => {
       setMorning(
         response.data.map((date) => {
@@ -47,7 +47,7 @@ export default function Appointments__Calendar(props) {
       setErrorMessage('There was an error loading the calendar events.');
     });
   //Afternoon
-  Axios.post('https://mysql-npoc.herokuapp.com/calendarafternoon')
+  Axios.post('http://localhost:5174/calendarafternoon')
     .then((response) => {
       setAfternoon(
         response.data.map((date) => {

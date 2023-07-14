@@ -60,7 +60,7 @@ export default function Dashboard() {
             password: matchedUser.password,
             role: matchedUser.role
           });
-          axios.post('https://mysql-npoc.herokuapp.com/addvisits', {
+          axios.post('http://localhost:5174/addvisits', {
             name: matchedUser.name,
             role: matchedUser.role
             })

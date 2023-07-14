@@ -7,7 +7,7 @@ export default function Confirmation__Comment({open, onClose, onConfirm, props})
 
     //Notify the appointment to the user via email
     function notifycancel(){
-        Axios.post('https://mysql-npoc.herokuapp.com/emailcancelledappointment', {
+        Axios.post('http://localhost:5174/emailcancelledappointment', {
             email: props.email,
             name: props.name,
             date: props.date,

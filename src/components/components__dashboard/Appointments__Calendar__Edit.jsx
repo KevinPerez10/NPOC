@@ -55,7 +55,7 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     return dates;
   }
   const CloseDate = (date) => {
-    axios.post('https://mysql-npoc.herokuapp.com/availability', {
+    axios.post('http://localhost:5174/availability', {
       d: formatDate(date),
       s:selected
       }).then(()=>{
@@ -63,7 +63,7 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
       })
   }
   const UpdateDate = (id) => {
-    axios.post('https://mysql-npoc.herokuapp.com/updateavailability', {
+    axios.post('http://localhost:5174/updateavailability', {
       id:id,
       s: selected
       }).then(()=>{
@@ -79,7 +79,7 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     return formattedDate;
   }
   const checkStatus = (d) => {
-    axios.post('https://mysql-npoc.herokuapp.com/checkexistingappt', {
+    axios.post('http://localhost:5174/checkexistingappt', {
       d:formatDate(d)
     }).then((response) => {
     if(response.data == false){
@@ -132,7 +132,7 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     }
   };
   const checkOpenStatus = (d) => {
-    axios.post('https://mysql-npoc.herokuapp.com/checkexistingappt', {
+    axios.post('http://localhost:5174/checkexistingappt', {
       d:formatDate(d)
     }).then((response) => {
     if(response.data == false){
@@ -151,7 +151,7 @@ export default function Appointments__Calendar__Edit({open, onClose}) {
     });
 }
 const UpdateOpen = (id,p) => {
-  axios.post('https://mysql-npoc.herokuapp.com/updateavailability', {
+  axios.post('http://localhost:5174/updateavailability', {
     id:id,
     s: p
     }).then(()=>{
@@ -159,7 +159,7 @@ const UpdateOpen = (id,p) => {
     })
 }
   const OpenAllWhole = (id) => {
-      axios.post('https://mysql-npoc.herokuapp.com/deleteclosed', {
+      axios.post('http://localhost:5174/deleteclosed', {
             s: id
           }).then(()=>{
             setFlag(flag + 1)

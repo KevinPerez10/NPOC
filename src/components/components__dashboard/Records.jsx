@@ -12,7 +12,7 @@ export default function ComponentsRecords() {
   const [search, setSearch] = useState("")
 
   useEffect(() => {
-    Axios.post('https://mysql-npoc.herokuapp.com/patients', {
+    Axios.post('http://localhost:5174/patients', {
       s:search
     }).then((response) => {
     setPatientList(response.data);
