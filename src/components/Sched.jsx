@@ -25,7 +25,8 @@ export default function Sched() {
     const [flag, setFlag] = useState(0)
 
     useEffect(()=>{
-        Axios.post("http://localhost:5174/login", {
+        if(props.email != 'null')
+        {Axios.post("http://localhost:5174/login", {
             email: props.email,
             password: props.password
             }).then((response) => {
@@ -38,9 +39,9 @@ export default function Sched() {
                 setLoginStatus(userData);
              
             }	
-        });
+        });}
     },[])
-
+    
     function timeZone(date){
         const dt = new Date(date);
         dt.setUTCHours(dt.getUTCHours() - 8);
@@ -101,7 +102,7 @@ export default function Sched() {
           'Friday',
           'Saturday',
         ];
-        const myDate = new Date(timeZone(pardate));
+        const myDate = new Date(pardate);
         const date = myDate.getDate();
         const dayOfWeek = myDate.getDay();
     
@@ -114,7 +115,7 @@ export default function Sched() {
       };
 
       function convertTimeToString(pardate) {
-        const time = new Date(timeZone(pardate))
+        const time = new Date(pardate)
         const hours = time.getHours();
         const minutes = time.getMinutes();
         const ampm = hours >= 12 ? 'PM' : 'AM';

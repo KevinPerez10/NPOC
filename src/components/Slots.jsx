@@ -31,7 +31,7 @@ export default function Slots({open, onClose, props}) {
       //check appointments then hide the button with the same date and time to the appointment
       Axios.post('http://localhost:5174/checkappointments').then((response) => {
         response.data.forEach((element) => {
-          const buttonId = getCurrentDateTime(timeZone(element.date));
+          const buttonId = getCurrentDateTime(element.date);
           hideButton(buttonId);
         });
       });
@@ -67,7 +67,7 @@ useEffect(() => {
 
   const nextDays = () => {
     const today = new Date();
-    const tomorrow = new Date(timeZone(today));
+    const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
     const datesArray = [tomorrow];
@@ -222,7 +222,7 @@ function recordAppointment(){
       'Friday',
       'Saturday',
     ];
-    const myDate = new Date(timeZone(pardate));
+    const myDate = new Date(pardate);
     const date = myDate.getDate();
     const dayOfWeek = myDate.getDay();
 
