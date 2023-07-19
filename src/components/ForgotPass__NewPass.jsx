@@ -41,11 +41,6 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
     setTimeout(() => setPopup(''), 5000)
   }
 
-  const [visible, setVisible] = useState(false)
-  const toggleVisibility = () => {
-    setVisible(!visible)
-  } 
-
   const [popup, setPopup] = useState('')
   const [flag, setFlag] = useState()
 
@@ -70,7 +65,7 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
             <h2 className="text-center col-span-2 mb-4 w-full text-xl"> Enter your new password </h2>
               <div className="col-span-2 flex items-center border-b border-gray py-2">
                 <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                  type={visible ? 'text' : 'password'}
+                  type='password'
                   placeholder="Enter your new password"
                   aria-label="email"
                   value={newPassword}
@@ -79,19 +74,12 @@ export default function ForgotPass__NewPass({open, onClose,props}) {
               </div>
               <div className="col-span-2 flex items-center border-b border-gray py-2">
                   <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                    type={visible ? 'text' : 'password'}
+                    type='password'
                     placeholder="Confirm your password"
                     aria-label="email"
                     value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   />
-                <div className='grid place-items-center text-xl cursor-pointer'>
-                  {visible ? (
-                    <ion-icon onClick={toggleVisibility} name="eye-outline"></ion-icon>
-                  ) : (
-                    <ion-icon onClick={toggleVisibility} name="eye-off-outline"></ion-icon>
-                  )}
-                </div>
               </div>
               <div
                   className='col-span-2 flex flex-col gap-2'

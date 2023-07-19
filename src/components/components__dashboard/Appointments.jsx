@@ -188,7 +188,7 @@ const getDate2 = (pardate) => {
   );
 };
   return (
-    <div className='bg-white font-poppins flex flex-col gap-10 items-center px-5 md:mx-10 md:rounded-xl md:shadow-md h-full'>
+    <div className='bg-white font-poppins flex flex-col gap-10 items-center px-5 md:mx-10 md:rounded-xl md:shadow-md h-max'>
       <p className='text-3xl place-self-center mt-5'> Appointments </p>
       <div className='flex flex-col md:flex-row justify-around gap-5 w-full'>
         <div className='bg-bg-dashboard w-1/2 px-20 py-5 flex flex-col items-center rounded-lg shadow-inner'>

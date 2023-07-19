@@ -43,9 +43,6 @@ function getCurrentDate() {
     const [isChecked, setIsChecked] = useState(false);
     const [error, setError] = useState("");
 
-    const toggleVisibility = () => {
-        setVisible(!visible)
-    }
     
     const propsToPass = {
         first: first,
@@ -245,7 +242,7 @@ function getCurrentDate() {
                             </div>
                             <div className="flex items-center border-b border-gray py-2">
                                 <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                        type={visible ? 'text' : 'password'}
+                                        type='password'
                                         placeholder="Password"
                                         aria-label="password"
                                         value={password}
@@ -256,19 +253,12 @@ function getCurrentDate() {
                             </div>
                             <div className="flex items-center border-b border-gray py-2">
                                 <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                        type={visible ? 'text' : 'password'}
+                                        type='password'
                                         placeholder="Confirm Password"
                                         aria-label="confirm password"
                                         onChange={(event) => (
                                             setConfirmPassword(event.target.value)
                                         )}/>
-                                <div className='grid place-items-center text-xl cursor-pointer'>
-                                    {visible ? (
-                                        <ion-icon onClick={toggleVisibility} name="eye-outline"></ion-icon>
-                                    ) : (
-                                        <ion-icon onClick={toggleVisibility} name="eye-off-outline"></ion-icon>
-                                    )}
-                                </div>
                             </div>
                             <div>
                                 <p></p>

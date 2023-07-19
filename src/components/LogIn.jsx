@@ -13,10 +13,6 @@ export default function LogIn({Login, error}) {
     //     Login(details)
     //   }
 
-    const toggleVisibility = () => {
-        setVisible(!visible)
-    }
-
     useEffect(()=>{
         setErrors(error);
     },[error])
@@ -54,17 +50,10 @@ return (
                         </div>
                         <div className="col-span-2 flex items-center border-b border-gray py-2">
                             <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                    type={visible ? 'text' : 'password'}
+                                    type='password'
                                     placeholder="Password"
                                     aria-label="password"
                                     onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
-                            <div className='grid place-items-center text-xl cursor-pointer'>
-                                {visible ? (
-                                    <ion-icon onClick={toggleVisibility} name="eye-outline"></ion-icon>
-                                ) : (
-                                    <ion-icon onClick={toggleVisibility} name="eye-off-outline"></ion-icon>
-                                )}
-                            </div>
                         </div>
                             <Link to="/forgotpass" className='col-span-2'>
                                 <div className="text-center text-link">
