@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Nav from './Nav'
 import { motion } from 'framer-motion'
 
@@ -27,6 +27,7 @@ export default function LogIn({Login, error}) {
         }
     }
 
+    const navigate = useNavigate()
 return (
     <motion.div
         initial={{opacity: 0}}

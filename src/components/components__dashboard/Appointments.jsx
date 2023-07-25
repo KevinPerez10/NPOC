@@ -176,7 +176,7 @@ const getDate2 = (pardate) => {
     'Friday',
     'Saturday',
   ];
-  const myDate = new Date(timeZone(pardate));
+  const myDate = new Date(pardate);
   const date = myDate.getDate();
   const dayOfWeek = myDate.getDay();
 
@@ -217,10 +217,10 @@ const getDate2 = (pardate) => {
             {getContactById(val.userID)}
           </p>
           <p className='col-start-1'>
-            {getDate(timeZone(val.date))}
+            {getDate(val.date)}
           </p>
           <p>
-            {convertTimeToString(timeZone(val.date))}
+            {convertTimeToString(val.date)}
           </p>
           <div
             onClick={()=> {
@@ -230,8 +230,8 @@ const getDate2 = (pardate) => {
               setIdCancel(val.userID)
               setN(getNameById(val.userID))
               setE(getEmailById(val.userID))
-              setD(getDate2(timeZone(val.date)))
-              setT(convertTimeToString(timeZone(val.date)))
+              setD(getDate2(val.date))
+              setT(convertTimeToString(val.date))
             }}
             className='bg-gray-500 hover:bg-gray-700 w-full text-center text-white px-3 py-1 rounded-full hover:cursor-pointer'
           >
