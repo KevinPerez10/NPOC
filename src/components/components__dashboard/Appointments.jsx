@@ -195,10 +195,12 @@ const getDate2 = (pardate) => {
           <p className=''>Pending Appointments</p>
           <p className='text-5xl text-button-lblue'>{appointmentList.length < 10? '0'+ appointmentList.length: appointmentList.length}</p>
         </div>
+        {/*
         <div className='bg-bg-dashboard w-1/2 px-20 py-5 flex flex-col items-center rounded-lg shadow-inner'>
           <div>Cancelled Appointments</div>
           <p className='text-5xl text-button-lblue'>03</p>
         </div>
+         */}
       </div>
       
       {/* Appointments */}
